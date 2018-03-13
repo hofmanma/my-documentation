@@ -1,0 +1,35 @@
+Installation Openshift auf Mac OSX
+
+1. Add insecure Registry
+https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#macos-with-docker-for-mac
+2. Install homebrew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+3. brew install socat
+4. oc cluster up
+
+OpenShift server started.
+
+The server is accessible via web console at:
+    https://127.0.0.1:8443
+
+You are logged in as:
+    User:     developer
+    Password: <any value>
+
+To login as administrator:
+    oc login -u system:admin
+
+
+———
+The following service(s) have been created in your project: mysql.
+
+       Username: user3CK
+       Password: vRR1Ufxj3djmeXSE
+  Database Name: sampledb
+ Connection URL: mysql://mysql:3306/
+
+For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/mysql-container/blob/master/5.7/README.md .
+
+export PATH=$PATH:/Users/hofmanma/Documents/Openshift/client.mac
+
+https://hofmanma:Will1009@github.com/hofmanma/phpTest.git
