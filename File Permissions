@@ -1,0 +1,13 @@
+/////////////////////////////////////
+// Permissions on files in Mac OS
+// List permissions for demo.txt
+ls -l demo.txt
+
+Output: -rw-r--r-- 1 root root 0 Aug 31 05:48 demo.txt
+
+// In this example change file ownership to hofmanma user and list the permissions, run:
+chown hofmanma demo.txt
+ls -l demo.txt
+
+// chown shifts the ownership to another user.
+// The ownership is taken away from the old owners. They don't have access any more.
