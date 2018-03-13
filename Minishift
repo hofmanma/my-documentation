@@ -1,0 +1,72 @@
+////////////////////////////////////////
+// Install minishift
+
+// 1. Install Minishift
+brew cask install minishift
+brew cask uninstall minishift
+// .. is installed to ..
+/usr/local/bin/minishift
+
+// 2. Install xhyve
+brew install --HEAD xhyve
+
+// Install KVM Driver
+sudo curl -L https://github.com/dhiltgen/docker-machine-kvm/releases/download/v0.7.0/docker-machine-driver-kvm -o /usr/local/bin/docker-machine-driver-kvm
+
+// Make the binary executable
+sudo chmod +x /usr/local/bin/docker-machine-driver-kvm
+
+// 3. Install the latest drivers via homebrew
+// https://docs.openshift.org/latest/minishift/getting-started/setting-up-driver-plugin.html
+brew install docker-machine-driver-xhyve
+
+// 4. Gain the rights
+sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+
+// 5. Start minishift - This will get the sources and run minishift.
+minishift start
+
+////////////////////////////////////////////
+// Using host folders
+// 1. List existing folders
+minishift hostfolder list
+
+// 2. Add hostfolder
+minishift hostfolder add myshare
+UNC path: //192.168.99.1/MYSHARE
+Mountpoint [/mnt/sda1/myshare]:
+Username: john
+Password: [HIDDEN]
+Domain:
+Added: myshare
+
+// 3. Mount folders
+minishift hostfolder mount myshare
+
+////////////////////////////////////////
+// Runtime service php
+http://phptest-horizonte.192.168.64.2.nip.io
+
+
+//////////////////////////////////////////
+// Lessons Learned - Info by Alex Ilies
+// Minishift does not allow to access mysql servers from outside.
+// This is why mysql and php run inside minishift, which is also a container.
+// Pods inside minishift have access to all routed services, e.g. php->mysql, and so on.
+// In the real openshift it should work.
+
+// 1. Start ssh inside Minishift
+minishift ssh
+// 2. List all networks inside minishift
+docker network ls
+// 3. Inspect network by id - first, the bridge network ...
+docker network inspect c81162d0ae8b
+
+
+//////////////////////////////////////////
+// Update container from git
+// 1. Update files in git
+// 2. Open Overview Tab in web ui
+// 3. Click Rebuild on the pod.
+// Done.

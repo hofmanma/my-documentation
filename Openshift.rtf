@@ -1,0 +1,63 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf100
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Monaco;\f2\fnil\fcharset0 Menlo-Regular;
+\f3\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue0;
+\red255\green255\blue255;\red41\green41\blue41;\red14\green115\blue195;\red36\green36\blue36;\red240\green240\blue240;
+\red27\green31\blue34;}
+{\*\expandedcolortbl;;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0\c29804;\csgray\c0;
+\csgray\c100000;\cssrgb\c21176\c21176\c21176;\cssrgb\c0\c53333\c80784;\cssrgb\c18824\c18824\c18824;\cssrgb\c95294\c95294\c95294;
+\cssrgb\c14118\c16078\c18039;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs48 \cf0 Installation Openshift auf Mac OSX\
+
+\fs24 \
+1. Add insecure Registry\
+{\field{\*\fldinst{HYPERLINK "https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#macos-with-docker-for-mac"}}{\fldrslt https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#macos-with-docker-for-mac}}\
+2. Install homebrew\
+\pard\pardeftab720\sl400\qc\partightenfactor0
+
+\f1\fs26 \cf2 \cb3 \expnd0\expndtw0\kerning0
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+\f0\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 3. brew install socat\
+4. oc cluster up\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs22 \cf4 \cb5 \CocoaLigature0 OpenShift server started.\
+\
+The server is accessible via web console at:\
+    https://127.0.0.1:8443\
+\
+You are logged in as:\
+    User:     developer\
+    Password: <any value>\
+\
+To login as administrator:\
+    oc login -u system:admin\
+\
+\
+\'97\'97\'97\
+\pard\pardeftab720\partightenfactor0
+
+\fs24 \cf6 \cb2 \expnd0\expndtw0\kerning0
+\CocoaLigature1 The following service(s) have been created in your project: mysql.\
+\
+       Username: user3CK\
+       Password: vRR1Ufxj3djmeXSE\
+  Database Name: sampledb\
+ Connection URL: mysql://mysql:3306/\
+\
+For more information about using this template, including OpenShift considerations, see {\field{\*\fldinst{HYPERLINK "https://github.com/sclorg/mysql-container/blob/master/5.7/README.md"}}{\fldrslt \cf7 https://github.com/sclorg/mysql-container/blob/master/5.7/README.md }}.\
+\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f3\fs31\fsmilli15600 \cf8 \cb9 export PATH=$PATH:
+\f2\fs24 \cf6 \cb2 /Users/hofmanma/Documents/Openshift/client.mac\
+\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf10 \cb1 \outl0\strokewidth0 \strokec10 https://hofmanma:Will1009@github.com/hofmanma/phpTest.git\
+}

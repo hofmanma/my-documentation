@@ -1,0 +1,54 @@
+/////////////////////////////////////
+// Initialize mysql
+// When starting commands can be passed to the mysql container.
+// These commands have to be appended
+docker run -it --link some-mysql:mysql --rm mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD"'
+docker exec -it <containername> /bin/bash
+// -it stays for interactive terminal.
+// This is required to see the terminal.
+
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=mysql -d mysql:latest
+docker run --name mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=true -d mysql
+
+docker run -it --name mysql -e MYSQL_USER=hofmanma -e MYSQL_PASSWORD=Will1009 -d mysql
+
+///////////////////////////
+$ docker run --name mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=true -d mysql
+$ mysql
+
+create table song(
+   id INT NOT NULL AUTO_INCREMENT,
+   title VARCHAR(100) NOT NULL,
+   created_on DATE,
+   PRIMARY KEY ( id ));
+
+create table notes(
+      id INT NOT NULL AUTO_INCREMENT,
+      song_id INT NOT NULL references song(id),
+      title VARCHAR(100) NOT NULL,
+      created_on DATE,
+      content BLOB,
+      PRIMARY KEY ( id ));
+
+/////////////////////////
+// Connection
+// From Mac Osx
+mysqlsh -h my-sql-horizonte.192.168.64.2.nip.io  -P 3306 -u root -p horizonte
+// From inside the container
+mysql -u root -h localhost horizonte -p .. Return(Initial Password)
+
+// path to configuration file inside image:
+/etc/mysql/my.conf
+
+
+///////////////////////////////////
+// Create user
+CREATE USER 'monty'@'%' IDENTIFIED BY 'secret';
+
+///////////////////////////////////
+// Check if sql daemon is running
+// From inside Openshift terminal
+ps -Af | grep mysqld
+
+// Check the ports (netstat not available in the image)
+netstat -lnp | grep mysql
