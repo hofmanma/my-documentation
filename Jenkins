@@ -31,3 +31,21 @@
 /////////////////////////////////
 // REST API
 // .. for control by other programs
+
+/////////////////////////////////
+// Install Maven into Jenkins
+// Tutorial - https://www.tutorialspoint.com/jenkins/jenkins_maven_setup.htm
+// Tutorial - http://www.tothenew.com/blog/how-to-setup-jenkins-for-a-maven-project/
+
+////////////////////////////////////////////
+// Openshift Pipeline Builds using Jenkins .. /Menu "Pipeline Build"
+// https://docs.openshift.org/latest/architecture/core_concepts/builds_and_image_streams.html#pipeline-build
+//
+// The Pipeline build strategy allows developers to define a Jenkins pipeline for execution by
+// the Jenkins pipeline plugin. The build can be started, monitored, and managed by OpenShift Origin
+// in the same way as any other build type.
+
+/////////////////////////////////
+// Offene Fragen und Punkte
+// + Wie integriert sich Jenkins in die Openshift Pipeline?
+// + Bedienung der Jenkins Web UI und CLI?

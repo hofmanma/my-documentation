@@ -70,3 +70,11 @@ docker network inspect c81162d0ae8b
 // 2. Open Overview Tab in web ui
 // 3. Click Rebuild on the pod.
 // Done.
+
+/////////////////////////////////////////////
+// Changing base memory size for all dockers
+// minishift config set memory 16384
+//  .. You currently have an existing Minishift instance. Changes to the 'memory' setting are only applied
+//     when a new Minishift instance is created.
+//  .. To let the configuration changes take effect, you must delete the current instance
+//     with 'minishift delete' and then start a new one with 'minishift start'.
