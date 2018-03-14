@@ -10,6 +10,15 @@
 //   konsequent für den gesamten Zyklus der Softwareerstellung abzubilden.
 
 /////////////////////////////////////
+// Verzeichnisstruktur
+// + Vorgabe einer Standard-Verzeichnisstruktur durch Maven
+//     --> Sofern ein Projekt sich daran hält, müssen die Pfadnamen nicht spezifiziert werden.
+//         (Vereinfachung der pom.xml-Datei)
+// + Auf oberster Stufe gibt es die beiden Verzeichnisse src und target
+//     --> src enthält alle Dateien, die als Eingabe für den Verarbeitungsprozess dienen
+//     --> in target werden automatisch alle erzeugten Dateien abgelegt
+
+/////////////////////////////////////
 // Maximale Automatisierung
 // Dabei sollen Software-Entwickler von der Anlage eines Softwareprojekts
 //    .. über das Kompilieren,
@@ -50,7 +59,7 @@
 //      --> Das Kompilat wird – ggf. mit anderen nichtkompilierbaren Dateien – zur Weitergabe verpackt.
 //          Häufig handelt es sich dabei um eine Jar-Datei.
 // + integration-test
-//      --> Test der Integrationsmöglichkeit):
+//      --> Test der Integrationsmöglichkeit:
 //          Das Softwarepaket wird auf eine Umgebung (anderer Rechner, anderes Verzeichnis, Anwendungsserver)
 //          geladen und seine Funktionsfähigkeit geprüft.
 // + verify (Gültigkeitsprüfung des Software-Pakets):
@@ -63,3 +72,20 @@
 //     --> (Installieren im fernen Maven-Repository) -
 //         Stabile Versionen der Software werden auf einem fernen Maven-Repository installiert
 //         und stehen damit in Umgebungen mit mehreren Entwicklern allen zur Verfügung.
+
+//////////////////////////////////
+// Configuration file
+// + Project Object Model - "pom.xml"
+// + Wird Maven ausgeführt, prüft es zunächst, ob..
+//     .. diese Datei alle nötigen Angaben enthält und
+//     .. ob alle Angaben syntaktisch gültig sind, bevor es weiterarbeitet.
+// + In der pom.xml werden Softwareabhängigkeiten angegeben, die ein von Maven unterstütztes Softwareprojekt
+//   zu anderen Softwareprojekten hat.
+//     --> Diese Abhängigkeiten werden aufgelöst, indem Maven zunächst ermittelt,
+//          .. ob die benötigten Dateien in einem lokalen Verzeichnis, dem lokalen Maven-Repository,
+//             bereits vorhanden sind.
+//          .. Sind sie es, verwendet Maven z. B. beim Kompilieren die lokal vorhandene Datei von dort,
+//             also ohne sie in das Projektverzeichnis zu kopieren.
+//     --> Kann die Abhängigkeit nicht lokal aufgelöst werden, versucht Maven, sich mit einem
+//         konfigurierten Maven-Repository im Intranet oder Internet zu verbinden und von dort
+//         die Dateien in das lokale Repository zu kopieren
