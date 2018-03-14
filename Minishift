@@ -63,7 +63,6 @@ docker network ls
 // 3. Inspect network by id - first, the bridge network ...
 docker network inspect c81162d0ae8b
 
-
 //////////////////////////////////////////
 // Update container from git
 // 1. Update files in git
@@ -86,3 +85,11 @@ docker network inspect c81162d0ae8b
 //Error:      open /var/lib/minishift/openshift.local.volumes/pods/5f216b37-2781-11e8-81b5-b675ba882a05/etc-hosts:
 //            no such file or directory
 //Solution: $ minishift ssh -- "sudo chmod -R o+rwx /var/lib/minishift/openshift.local.pv/pv*"
+
+////////////////////////////////////////
+// How to look into an image
+///////////////////////////
+// 1. Open hub.docker.com
+// 2. Search and find the Image
+// 3. Open the git Repository
+// .. Done: Image files are ready to watch

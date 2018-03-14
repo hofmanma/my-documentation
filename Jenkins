@@ -47,11 +47,15 @@
 
 /////////////////////////////////
 // Offene Fragen und Punkte
+///////////////////////////
 // + Wie integriert sich Jenkins in die Openshift Pipeline?
 // + Bedienung der Jenkins Web UI und CLI?
 // + Was genau passiert bei einem deploy
 // + Was genau passiert bei einem Build.
 // + Wiso werden Deploys und Builds unterschieden?
+// + Wohin wird deployed (PV/PVC)
+// + Wie finde ich die Deployment Verzeichnisse?
+// + Kann man die Deployment Verzeichnisse ändern?
 
 ////////////////////////////////
 // Build und Deploy.
@@ -102,3 +106,9 @@ try {
 // Generating pipeline code for the jenkins files
 // 1. Selecting the use case
 // 2. Press "Generate Pipeline Script"
+
+//////////////////////////////////////////////////
+// Openshift Pipeline Jenkins Plugin
+////////////////////
+// openshiftBuild
+//
