@@ -102,6 +102,8 @@ docker network inspect c81162d0ae8b
 .. Deploy
  4. group multiple containers to pods.
     They will share one pvc and ip/ports
+    Shutdown a running container
+    Boot a new container from the updated image
 -----------------------------------------
 .. Deploy
  3. Run an image as a container
