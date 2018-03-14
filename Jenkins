@@ -61,7 +61,7 @@
 //    Bei einem Deploy werden die Images auf einem Host installiert und gestartet.
 // 3. Pipelines
 //    Pipelines sind immer Jenkinsfiles, welche den Build und Deploy beschreiben.
-//    (siehe Beispiel unten)  
+//    (siehe Beispiel unten)
 
 ///////////////////////////////////
 // Sample Pipeline configuration
@@ -92,3 +92,11 @@ try {
    currentBuild.result = 'FAILURE'
    throw err
 }
+
+////////////////////////////////////////////////////
+// Jenkins Web UI - Snippet Generator
+// Menu/Pipeline Syntax
+////////////////////////
+// Generating pipeline code for the jenkins files
+// 1. Selecting the use case
+// 2. Press "Generate Pipeline Script"
