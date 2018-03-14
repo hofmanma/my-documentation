@@ -49,6 +49,19 @@
 // Offene Fragen und Punkte
 // + Wie integriert sich Jenkins in die Openshift Pipeline?
 // + Bedienung der Jenkins Web UI und CLI?
+// + Was genau passiert bei einem deploy
+// + Was genau passiert bei einem Build.
+// + Wiso werden Deploys und Builds unterschieden?
+
+////////////////////////////////
+// Build und Deploy.
+// 1. Build
+//    Bei einem Build werden die verwendeten Images aus einer Registry Source gepullt
+// 2. Deploys
+//    Bei einem Deploy werden die Images auf einem Host installiert und gestartet.
+// 3. Pipelines
+//    Pipelines sind immer Jenkinsfiles, welche den Build und Deploy beschreiben.
+//    (siehe Beispiel unten)  
 
 ///////////////////////////////////
 // Sample Pipeline configuration

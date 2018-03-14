@@ -79,7 +79,6 @@ docker network inspect c81162d0ae8b
 //  .. To let the configuration changes take effect, you must delete the current instance
 //     with 'minishift delete' and then start a new one with 'minishift start'.
 
-
 /////////////////////////////////////////////
 // Errors and Solutions:
 ////////////
