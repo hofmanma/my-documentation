@@ -49,3 +49,33 @@
 // Offene Fragen und Punkte
 // + Wie integriert sich Jenkins in die Openshift Pipeline?
 // + Bedienung der Jenkins Web UI und CLI?
+
+///////////////////////////////////
+// Sample Pipeline configuration
+try {
+   timeout(time: 20, unit: 'MINUTES') {
+      ////////////////////////////////
+      // node()
+      // A step that schedules a task to run by adding it to the Jenkins build queue.
+      // It may be run on the jenkins master or slave (in this case a container).
+      // Commands outside of node-elements are run on the Jenkins master.
+      node('nodejs') {
+          ///////////////////////////
+          // stage()
+          // By default, pipeline builds can run concurrently.
+          // The stage command lets you mark certain sections of a build as being
+          // constrained by limited concurrency.
+          stage('build') {
+            openshiftBuild(buildConfig: 'nodejs-mongodb-example', showBuildLogs: 'true')
+          }
+          stage('deploy') {
+            openshiftDeploy(deploymentConfig: 'nodejs-mongodb-example')
+          }
+        }
+   }
+} catch (err) {
+   echo "in catch block"
+   echo "Caught: ${err}"
+   currentBuild.result = 'FAILURE'
+   throw err
+}
