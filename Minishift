@@ -108,7 +108,7 @@ docker network inspect c81162d0ae8b
 -----------------------------------------
 .. Build
  2. Create an image from the Dockerfile
-    Pull a docker file.
+    Pull an image from a remote repository
 -----------------------------------------
 .. Build
  1. Create/Download a Dockerfile
