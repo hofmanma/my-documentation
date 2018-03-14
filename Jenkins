@@ -79,9 +79,11 @@ try {
           // The stage command lets you mark certain sections of a build as being
           // constrained by limited concurrency.
           stage('build') {
+            // Start build referenced by the build configuration called 'nodejs-mongodb-example'
             openshiftBuild(buildConfig: 'nodejs-mongodb-example', showBuildLogs: 'true')
           }
           stage('deploy') {
+            // Start deployment referenced by the deployment configuration called 'nodejs-mongodb-example'
             openshiftDeploy(deploymentConfig: 'nodejs-mongodb-example')
           }
         }
