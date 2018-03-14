@@ -78,3 +78,12 @@ docker network inspect c81162d0ae8b
 //     when a new Minishift instance is created.
 //  .. To let the configuration changes take effect, you must delete the current instance
 //     with 'minishift delete' and then start a new one with 'minishift start'.
+
+
+/////////////////////////////////////////////
+// Errors and Solutions:
+////////////
+//Blog: https://github.com/minishift/minishift/issues/856
+//Error:      open /var/lib/minishift/openshift.local.volumes/pods/5f216b37-2781-11e8-81b5-b675ba882a05/etc-hosts:
+//            no such file or directory
+//Solution: $ minishift ssh -- "sudo chmod -R o+rwx /var/lib/minishift/openshift.local.pv/pv*"
