@@ -48,7 +48,6 @@ minishift hostfolder mount myshare
 // Runtime service php
 http://phptest-horizonte.192.168.64.2.nip.io
 
-
 //////////////////////////////////////////
 // Lessons Learned - Info by Alex Ilies
 // Minishift does not allow to access mysql servers from outside.
@@ -93,3 +92,24 @@ docker network inspect c81162d0ae8b
 // 2. Search and find the Image
 // 3. Open the git Repository
 // .. Done: Image files are ready to watch
+
+////////////////////////////////////
+// Architecture
+////////////////
+-----------------------------------------
+ 5. group pods to services/Applications
+-----------------------------------------
+.. Deploy
+ 4. group multiple containers to pods.
+    They will share one pvc and ip/ports
+-----------------------------------------
+.. Deploy
+ 3. Run an image as a container
+-----------------------------------------
+.. Build
+ 2. Create an image from the Dockerfile
+    Pull a docker file.
+-----------------------------------------
+.. Build
+ 1. Create/Download a Dockerfile
+-----------------------------------------

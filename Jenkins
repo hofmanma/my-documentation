@@ -60,7 +60,8 @@
 ////////////////////////////////
 // Build und Deploy.
 // 1. Build
-//    Bei einem Build werden die verwendeten Images aus einer Registry Source gepullt
+//    Bei einem Build werden die verwendeten Images aus einer Registry Source gepullt.
+//    A jenkins job is called build. This is not related to docker builds.
 // 2. Deploys
 //    Bei einem Deploy werden die Images auf einem Host installiert und gestartet.
 // 3. Pipelines
