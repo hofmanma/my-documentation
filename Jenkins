@@ -1,0 +1,33 @@
+/////////////////////////////////
+// Jenkins documentation
+// https://github.com/openshift/origin/blob/master/examples/jenkins/README.md
+
+//////////////////////////////////
+// Important Properties
+// + Most used tool in CI
+// + written in JAVA
+// + runs in arbitrary EJB-Containers
+// + delivered with minimal Servlet-Middleware Winstone
+//     --> runnable on Application-Servers due to Java-EE-Specification
+//     --> No additional servlet container like Tomcat required
+// + Supports build tools like..
+//     --> Maven
+//     --> Apache Ant
+//     --> Gradle
+// + Supports version maintainance tools like ..
+//     --> CVS, Subverrsion
+//     --> Git
+// + Supports automated test tools like ..
+//     --> JUnit
+//     --> Emma
+
+/////////////////////////////////
+// Plugins for..
+// + PHP-based,
+// + Ruby-based
+// + .NET-based
+// .. projects
+
+/////////////////////////////////
+// REST API
+// .. for control by other programs

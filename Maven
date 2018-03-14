@@ -1,0 +1,65 @@
+
+//////////////////////////////////////
+// Wichtige Eigenschaften von "Apache Maven"
+// „Sammler des Wissens“
+
+// + Maven ist ein Build-Management-Tool der Apache Software Foundation
+// + basiert auf Java.
+// + Mit ihm kann man insbesondere Java-Programme standardisiert erstellen und verwalten.
+// + Maven versucht, den Grundgedanken „Konvention vor Konfiguration“ (englisch Convention over Configuration)
+//   konsequent für den gesamten Zyklus der Softwareerstellung abzubilden.
+
+/////////////////////////////////////
+// Maximale Automatisierung
+// Dabei sollen Software-Entwickler von der Anlage eines Softwareprojekts
+//    .. über das Kompilieren,
+//    .. Testen und „Packen“,
+//    .. bis zum Verteilen der Software auf Anwendungsrechnern so unterstützt werden,
+// .. dass möglichst viele Schritte automatisiert werden können
+// Folgt man dabei den von Maven vorgegebenen Standards, braucht man
+//    .. für die meisten Aufgaben des Build-Managements nur sehr wenige Konfigurationseinstellungen zu hinterlegen,
+//       um den Lebenszyklus eines Softwareprojekts abzubilden.
+
+/////////////////////////////////////
+// „Konvention vor Konfiguration“
+// + Softwaredesign-Paradigma
+// + Ziel: Reduktion der Komplexität von Konfigurationen
+// + Entwickler halten sich an gewisse Konventionen (Beispielsweise Namenskonventionen)
+//     --> Diese Konventionen müssen nicht explizit konfiguriert werden.
+
+/////////////////////////////////////
+// Standard Lebenszyklus
+// + clean - zum Löschen des Target Verzeichnisses,
+// + default bzw. build zum Ausführen von Phasen,
+// + site zum Zusammenstellen von Webseiten
+
+/////////////////////////////////////
+// Phasen des Lebenszyklus
+// + archetype (Scaffolding):
+//      --> Damit kann ein Template für ein Softwareprojekt erstellt werden.
+//      --> Abhängigkeiten werden aufgelöst und bei Bedarf heruntergeladen.
+// + validate (Validieren):
+//      --> Hier wird geprüft, ob die Projektstruktur gültig und vollständig ist.
+// + compile (Kompilieren):
+//      --> In dieser Phase wird der Quellcode kompiliert.
+// + test (Testen):
+//      --> Hier wird der kompilierte Code mit einem passenden Testframework getestet.
+//          Maven berücksichtigt dabei in späteren Zyklen, dass Testklassen normalerweise nicht in der
+//          auszuliefernden Software vorhanden sind.
+// + package (Verpacken):
+//      --> Das Kompilat wird – ggf. mit anderen nichtkompilierbaren Dateien – zur Weitergabe verpackt.
+//          Häufig handelt es sich dabei um eine Jar-Datei.
+// + integration-test
+//      --> Test der Integrationsmöglichkeit):
+//          Das Softwarepaket wird auf eine Umgebung (anderer Rechner, anderes Verzeichnis, Anwendungsserver)
+//          geladen und seine Funktionsfähigkeit geprüft.
+// + verify (Gültigkeitsprüfung des Software-Pakets):
+//     --> Prüfungen, ob das Softwarepaket eine gültige Struktur hat und ggf. bestimmte Qualitätskriterien erfüllt.
+// + install
+//     --> (Installieren im lokalen Maven-Repository): Installiere das Softwarepaket in dem lokalen
+//         Maven-Repository, um es in anderen Projekten verwenden zu können, die von Maven verwaltet werden.
+//         Dies ist insbesondere für modulare Projekte interessant.
+// + deploy
+//     --> (Installieren im fernen Maven-Repository) -
+//         Stabile Versionen der Software werden auf einem fernen Maven-Repository installiert
+//         und stehen damit in Umgebungen mit mehreren Entwicklern allen zur Verfügung.
