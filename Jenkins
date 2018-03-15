@@ -170,3 +170,4 @@ try {
 ///////////////////
 // [Jenkins Verwalten]/[Knoten Verwalten]
 // + Liste der Nodes wird angezeigt.
+// + Hinzufügen neuer Knoten.
