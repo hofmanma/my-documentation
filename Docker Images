@@ -1,4 +1,4 @@
 
-///////////////////////////////////////////////////////
-// Automatische Updateinstallation in Docker
-//  + hub.docker.com - Docker image: v2tec/watchtower
+//////////////////////////////////////////////////////////
+// 1. Automatische Updateinstallation in Docker
+//    .. hub.docker.com - Docker image: v2tec/watchtower
