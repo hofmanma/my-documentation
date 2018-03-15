@@ -1,0 +1,57 @@
+/////////////////////////////////////
+// Subscripts
+////////////////
+// + Classes, structures, and enumerations can define subscripts, which are shortcuts for accessing
+//   the member elements of a collection, list, or sequence.
+// + You use subscripts to set and retrieve values by index without needing separate methods
+//   for setting and retrieval.
+// + For example, you access elements in an Array instance as someArray[index]
+//   and elements in a Dictionary instance as someDictionary[key].
+// + You can define multiple subscripts for a single type, and the appropriate subscript overload to use is
+//   selected based on the type of index value you pass to the subscript.
+// + Subscripts can take any number of input parameters, and these input parameters can be of any type.
+// + Subscripts can also return any type.
+// + Subscripts can use variadic parameters, but they can’t use in-out parameters or provide
+//   default parameter values.
+// + A class or structure can provide as many subscript implementations as it needs.
+
+/////////////////////////////////
+// Syntax
+///////////
+// + Subscripts enable you to query instances of a type by writing one or more values in square brackets
+//   after the instance name.
+// + Their syntax is similar to both instance method syntax and computed property syntax.
+// + You write subscript definitions with the subscript keyword, and specify one or more input parameters
+//   and a return type, in the same way as instance methods
+///////////////////
+// Example
+////////////
+subscript(index: Int) -> Int {
+    get {
+        // return an appropriate subscript value here
+    }
+    set(newValue) {
+        // perform a suitable setting action here
+    }
+}
+////////////////////
+// Description
+// + The type of newValue is the same as the return value of the subscrip
+//////////////////////////////////
+// Example - Read Only Subscript
+///////////////
+// subscript(index: Int) -> Int {
+//     // return an appropriate subscript value here
+// }
+/////////////
+// Example
+////////////
+// struct TimesTable {
+//     let multiplier: Int
+//     subscript(index: Int) -> Int {
+//         return multiplier * index
+//     }
+// }
+// let threeTimesTable = TimesTable(multiplier: 3)
+// print("six times three is \(threeTimesTable[6])")
+ --> Prints "six times three is 18"
