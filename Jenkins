@@ -1,6 +1,7 @@
 /////////////////////////////////
 // Jenkins documentation
 // https://github.com/openshift/origin/blob/master/examples/jenkins/README.md
+// https://jenkins.io/doc/
 
 //////////////////////////////////
 // Important Properties
@@ -112,4 +113,60 @@ try {
 // Openshift Pipeline Jenkins Plugin
 ////////////////////
 // openshiftBuild
-//
+
+/////////////////////////////////////////
+// Script Konsole - Groovy Script
+///////////////////////////////////////
+// + Konfiguration der Jenkins Instanz mit Groovy Scripts
+// + http://www.groovy-lang.org
+////////////////////////////////
+// + Groovy ist eine Programmiersprache und Skriptsprache, die dynamische und statische Typisierung unterstützt.
+//   Sie zählt zu den Sprachen, die auf der Java Virtual Machine ausgeführt werden, was eine Verfügbarkeit
+//   für viele Plattformen wie insbesondere Linux, Mac OS X und Windows ermöglicht.
+// + Groovy wird nicht wie andere Skriptsprachen über einen interpretierten Abstract Syntax Tree ausgeführt,
+//   sondern vor dem Ablauf eines Skripts direkt in Java-Bytecode übersetzt.
+
+//////////////////////////////////////
+// Logs
+////////
+// Pipeline Build Logs
+// 1. Open Jenkins
+// 2. Open Pipeline and the Stage View
+// 3. Click on the step and press "Logs"
+//////////////////////////
+// Pipeline Build Logs
+// [Open Project]/[Build Verlauf]
+// + Liste der Builds wird angezeigt
+// + Öffnen eines Builds
+/////////////////////////
+// Jenkins System Logs
+// [Jenkins Verwalten]/[System Log]/[Alle Jenkins Logs]
+// + Gesamte Logausgabe
+
+////////////////////////////////////
+// Configure Pipelines
+///////////
+// [Open Pipeline]/[Konfigurieren]
+// + Edit the Jenkinsfile
+// + Add additional triggers
+// + Lock concurrent processing
+// + Move pipeline to other projects
+//   [Open Pipeline]/[Move]
+
+/////////////////////////////////////
+// Jenkins Project Configuration
+/////////////////////////
+// [Start Menu]/[Konfigurieren]
+// + Link to JIRA
+// + Hinterlegen einer URL für eine externe Docker-Registry
+// + Add Config files
+//     [Project]/[Config Files]/[Add a new Config]
+//     .. Maven config Files (local or global)
+//     .. Json File
+//     .. Groovy File
+
+///////////////////////////////
+// Nodes verwalten
+///////////////////
+// [Jenkins Verwalten]/[Knoten Verwalten]
+// + Liste der Nodes wird angezeigt.
