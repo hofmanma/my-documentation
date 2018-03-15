@@ -1,149 +1,173 @@
-Wichtige Images
-https://hub.docker.com/
+/////////////////////////////////////////////////////////////
+// This file sums up the docker tutorial provided by msg XT
+// It describes all important docker commands in practice.
+/////////////////////////////////////////////////////////////
+// Find important Images
+// https://hub.docker.com/
+///////////////////////////
 
-Grundlegende Docker Befehle und Funktionen
-Images, die nicht lokal existieren, werden aus der Registry geladen
-On-Premise Installation von eigenen IMAGES. Hinterlegen in der Registry. Hierfür wird ein Dockeraccount benötigt.
+////////////////////////////////////////////
+// Grundlegende Docker Befehle und Funktionen
+// Images, die nicht lokal existieren, werden aus der Registry geladen
+// On-Premise Installation von eigenen IMAGES. Hinterlegen in der Registry.
+// Hierfür wird ein Dockeraccount benötigt.
 
-Herunterladen eines Images:
+////////////////////////////////
+// Herunterladen eines Images:
 docker pull nats
 docker pull alpine
 
 Tag = Version eines Images
 Docker pull nats:0.9.4
 
-Anzeigen aller Images auf dem Docker Host
+/////////////////////////////////////////////
+// Anzeigen aller Images auf dem Docker Host
 docker images
 
-Löschen eines Images
+////////////////////////////////
+// Löschen eines Images
 docker rmi IMAGE
 docker rmi IMAGE:TAG
 docker rmi: IMAGE-ID
 
-Löschen eines Containers
+////////////////////////////////
+// Löschen eines Containers
 docker rm buscon
 
-Starten  eines Images als Container
+////////////////////////////////
+// Starten  eines Images als Container
 docker run alpine ls -l
 
-Anzeige aller laufenden Docker Container
+/////////////////////////////////////////
+// Anzeige aller laufenden Docker Container
 docker ps
-
-Anzeige aller existierenden Docker Container
+// Anzeige aller existierenden Docker Container
 docker ps -a
 
-Ausführen eines Befehl im Container. -it erzeugt eine Ausgabe nach standard out:
+//////////////////////////////////////////
+// Ausführen eines Befehl im Container. -it erzeugt eine Ausgabe nach standard out:
 docker run -it IMAGE Command
 docker run -it alpine /bin/sh
-
-„Detached Mode“ von docker run
+// „Detached Mode“ von docker run
 docker run -d sequence/static-site
-Started den Container als Batchjob.
+.. Started den Container als Batchjob.
 
-Ausführen von ls -l im Detached Container
+////////////////////////////////
+//Ausführen von ls -l im Detached Container
 docker exec CONTAINER-ID ls -l
 docker exec CONTAINER-NAME ls -l
 
-Stoppen eines Containers
+////////////////////////////////
+// Stoppen eines Containers
 docker stop CONTAINER-ID
 
-Löschen eines Containers
+////////////////////////////////
+// Löschen eines Containers
 docker rm CONTAINER-ID
 
-Vergeben eines Containernamens
+////////////////////////////////
+// Vergeben eines Containernamens
 docker run -d —name nginx
 
-Publishing aller Ports eines Containers
+////////////////////////////////
+// Ports
+////////////
+// Publishing aller Ports eines Containers
 docker run -d -P
-
-Anzeigen des Portmappings
+// Anzeigen des Portmappings
 docker port nginx
-
-Mapping eines Ports des Containers (80) auf einen Port des Hosts (9100)
+// Mapping eines Ports des Containers (80) auf einen Port des Hosts (9100)
 docker run -d -p 9100:80 sequence/static-site
 -p hostPort:ContainerPort
 
-Entfernen aller laufenden Container eines Images ohne diese vorher zu stoppen
+////////////////////////////////
+// Entfernen aller laufenden Container eines Images ohne diese vorher zu stoppen
 docker rm -f CONTAINER-ID… CONTAINER-NAME….
 
-Erstes Dockerfile und Image
-Ein Dockerfile beschreibt ein Image, d.h. ein Softwarepaket
-
-Dockerfile Syntax - Verwenden eines Basisimages: FROM IMAGE-NAME
+///////////////////////////////////////////
+// Erstes Dockerfile und Image
+// Ein Dockerfile beschreibt ein Image, d.h. ein Softwarepaket
+////////////////////////////////
+// Dockerfile Syntax - Verwenden eines Basisimages: FROM IMAGE-NAME
 Username/IMAGE-NAME:Version
-
-Dockerfile Syntax - Hinzufügen von Metadaten: LABEL maintainer EMAIL
-
-Dockerfile Syntax - Setzen der Proxies im Container
+// Dockerfile Syntax - Hinzufügen von Metadaten: LABEL maintainer EMAIL
+// Dockerfile Syntax - Setzen der Proxies im Container
 ENV http_proxy=http://proxy.msg.de:3128 \ https_proxy=https://proxy.msg.de:3128
-
-Installieren von Komponenten im Dockerfile; in diesem Fall git und maven
-Befehl [RUN] die ganze Welt
-Befehl [apk —no-cache add PACKAGE]
-Beispiel: RUN app —no-cache add git maven
-Beispiel: RUN git clone https://github…
-
-Kopieren von Dateien in die Container
+// Installieren von Komponenten im Dockerfile; in diesem Fall git und maven
+// Befehl [RUN] die ganze Welt
+// Befehl [apk —no-cache add PACKAGE]
+// Beispiel: RUN app —no-cache add git maven
+// Beispiel: RUN git clone https://github…
+// Kopieren von Dateien in die Container
 COPY settings.xml /root/.m2/
-
-Freigeben eines Containerports nach außen
+//Freigeben eines Containerports nach außen
 EXPOSE 8080
-
-Festlegen des Arbeitsverzeichnisses. Alle Befehl werden in diesem Verzeichnis ausgeführt.
+//Festlegen des Arbeitsverzeichnisses. Alle Befehl werden in diesem Verzeichnis ausgeführt.
 WORKDIR /spring-petclinic
-
-Setzen von Container Autostart Befehlen
-Mit dem Befehl CMD kann man den dafult command des Containers setzen
-Übergabe von arg/argv an die Kommandozeile des Containers
+// Setzen von Container Autostart Befehlen
+// Mit dem Befehl CMD kann man den dafult command des Containers setzen
+// Übergabe von arg/argv an die Kommandozeile des Containers
 CMD [„mvn“, „spring-boot:run“]
 
-Builden eines Images
+//////////////////////////////
+// Builden eines Images
+/////////////////////
 docker build -t petclinic
 docker run -d -P petclinic
 docker logs CONTAINER-ID
 
-Dockerfile mit Parameter
-Mit dem Befehl ARG kann ein mit —build-arg übergebener Parameter gesetzt werden
-Diese Parameter sind nur zur Buildzeit verfügbar.
+//////////////////////////////
+// Dockerfile mit Parameter
+// Mit dem Befehl ARG kann ein mit —build-arg übergebener Parameter gesetzt werden
+// Diese Parameter sind nur zur Buildzeit verfügbar.
 ARG myBuildArgVariable
 
-Kopieren eines JAR-Files in den Container und Start der Javaanwendung
+//////////////////////////////
+// Kopieren eines JAR-Files in den Container und Start der Javaanwendung
 ENV jarFile $myBuildArgVariable
 COPY $jarFile
 CMD java -jar $jarFile
 
-Erstellen eines Images mit dem Namen petclinic.arg und dem Buildparameter spring-petclinic-1.4.2.jar
+////////////////////////////////////////////////////
+// Erstellen eines Images mit dem Namen petclinic.arg und dem Buildparameter spring-petclinic-1.4.2.jar
 docker build -t petclinic-arg —build-arg myBuildArgVariable=spring-petclinic-1.4.2.jar
 
-Starten des Images und prüfen des Logstatus
+///////////////////////////////////////////////
+// Starten des Images und prüfen des Logstatus
 docker run -d -P petclinic-arg
 docker logs —details CONTAINER-ID
 
-Export von Images und Containern
-Image von busybox, das den Namen buscon erhält
+////////////////////////////////////
+// Export von Images und Containern
+// Image von busybox, das den Namen buscon erhält
 docker run -d —name buscon busybox mkdir /home/test
 
-Erstellen eines neuen Images aus dem Container buscon, um dieses Exportieren zu können
-Der Befehl docker commit kann neue Images aus bestehenden Containern erstellen
+////////////////////////////////////
+// Erstellen eines neuen Images aus dem Container buscon, um dieses Exportieren zu können
+// Der Befehl docker commit kann neue Images aus bestehenden Containern erstellen
 docker commit buscon busybox-1
 
-Speichern eines Images in eine Datei
+/////////////////////////////////////////
+// Speichern eines Images in eine Datei
 docker save —output=„Zielverzeichnis“ busybox-1
 
-Exportieren eines Containers in ein tar-File
+/////////////////////////////////////////////
+// Exportieren eines Containers in ein tar-File
 docker export —output=„Zieldatei“ buskin
 
-Import eines Exportierten Containers als neues Image busybox-1-export
-Der Befehl docker import wird zum Importieren von Containern aus tar Archiven verwendet.
+/////////////////////////////////////////////
+// Import eines Exportierten Containers als neues Image busybox-1-export
+// Der Befehl docker import wird zum Importieren von Containern aus tar Archiven verwendet.
 docker import Zieltarfile busybox-1-export:latest
 
-Laden eines Images
-Der Befehl docker load wird zum Laden eines Images aus einem tar-Archiv verwendet
+//////////////////////////////
+// Laden eines Images
+// Der Befehl docker load wird zum Laden eines Images aus einem tar-Archiv verwendet
 docker load -i Zieltarfile
 
-Docker run busy box-1-export [.-d /home/test ] && echo ‚Directory found‘ || echo ‚Directory not found‚
+docker run busy box-1-export [.-d /home/test ] && echo ‚Directory found‘ || echo ‚Directory not found‚
 
-Beim Export und Import wird eine neue History erzeugt. Anzeigen der History eines Images
+// Beim Export und Import wird eine neue History erzeugt. Anzeigen der History eines Images
 docker history  busybox
 docker history busybox-1
 docker history busybox-1-export
