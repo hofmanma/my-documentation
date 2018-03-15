@@ -19,12 +19,48 @@ Basics
 // + You can decompose a tuple’s contents into separate constants or variables, which you then access as usual:
 //     .. let (statusCode, statusMessage) = http404Error
 
-//////////////
-// Optionals
+/////////////////////////////////////////////
+// Optionals "?" - (like NULLABLE in databases).
 // + Swift also introduces optional types, which handle the absence of a value.
 // + Optionals say either “there is a value, and it equals x” or “there isn’t a value at all”.
 // + Using optionals is similar to using nil with pointers in Objective-C,
 //   but they work for any type, not just classes.
+// + You use optionals in situations where a value may be absent
+// + An optional represents two possibilities:
+//     .. Either there is a value, and you can unwrap the optional to access that value, or
+//     .. there isn’t a value at all.
+// + If you define an optional variable without providing a default value, the variable is automatically
+//   set to nil for you:
+//     .. var surveyAnswer: String?
+////////////////
+// Examples
+// + The example below uses the initializer to try to convert a String into an Int:
+//    .. let possibleNumber = "123"
+//    .. let convertedNumber = Int(possibleNumber)
+//      -> convertedNumber is inferred to be of type "Int?", or "optional Int",
+//         since the conversion might fail.
+///////////////////////////
+// Optional Binding
+// + You use optional binding to find out whether an optional contains a value, and if so,
+//   to make that value available as a temporary constant or variable:
+//     .. if let constantName = someOptional {
+//         statements
+//        }
+////////////////////////////////////////
+// Implicitly Unwrapped Optionals - "!"
+// + Sometimes it’s clear from a program’s structure that an optional will always have a value,
+//   after that value is first set.
+// + In these cases, it’s useful to remove the need to check and
+//   unwrap the optional’s value every time it’s accessed, because it can be safely assumed to have a
+//   value all of the time.
+// + You write an implicitly unwrapped optional by placing an exclamation mark (String!) rather
+//   than a question mark (String?) after the type that you want to make optional.
+//////////////
+// Examples
+//    .. let possibleString: String? = "An optional string."
+//       let forcedString: String = possibleString! // requires an exclamation mark
+//    .. let assumedString: String! = "An implicitly unwrapped optional string."
+//    .. let implicitString: String = assumedString // no need for an exclamation mark
 
 ////////////////
 // Data Types
@@ -105,4 +141,28 @@ Basics
 //    .. typealias AudioSample = UInt16
 // + Once you define a type alias, you can use the alias anywhere you might use the original name:
 //    .. var maxAmplitudeFound = AudioSample.min
-//          -> maxAmplitudeFound is now 0
+//        -> maxAmplitudeFound is now 0
+
+///////////////////////////////////
+// Error Handling
+// + You use error handling to respond to error conditions your program may encounter during execution.
+// + When a function encounters an error condition, it throws an error. That function’s caller can
+//   then catch the error and respond appropriately.
+// + A function indicates that it can throw an error by including the throws keyword in its declaration.
+//   .. func canThrowAnError() throws {
+//          this function may or may not throw an error
+//      }
+// + When you call a function that can throw an error, you prepend the try keyword to the expression.
+//   .. do {
+//       try canThrowAnError()
+//          no error was thrown
+//      } catch {
+//          an error was thrown }
+//////////////////
+// Preconditions
+// + Use a precondition whenever a condition has the potential to be false, but must definitely
+//   be true for your code to continue execution.
+// + You write a precondition by calling the precondition(_:_:file:line:) function.
+//   You pass this function an expression that evaluates to true or false and a message to display
+//   if the result of the condition is false. For example
+//      .. precondition(index > 0, "Index must be greater than zero.")
