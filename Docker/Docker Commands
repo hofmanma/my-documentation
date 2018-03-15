@@ -88,8 +88,8 @@ docker rm -f CONTAINER-ID… CONTAINER-NAME….
 // Erstes Dockerfile und Image
 // Ein Dockerfile beschreibt ein Image, d.h. ein Softwarepaket
 ////////////////////////////////
-// Dockerfile Syntax - Verwenden eines Basisimages: FROM IMAGE-NAME
-Username/IMAGE-NAME:Version
+// Dockerfile Syntax - Verwenden eines Basisimages:
+FROM IMAGE-NAME Username/IMAGE-NAME:Version
 // Dockerfile Syntax - Hinzufügen von Metadaten: LABEL maintainer EMAIL
 // Dockerfile Syntax - Setzen der Proxies im Container
 ENV http_proxy=http://proxy.msg.de:3128 \ https_proxy=https://proxy.msg.de:3128
