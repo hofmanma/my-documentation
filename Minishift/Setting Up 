@@ -1,0 +1,63 @@
+///////////////////////////////////////////////////////////////////
+// Added mySql
+//
+The following service(s) have been created in your project: mysql.
+
+       Username: userLK5
+       Password: 5EHgQa6sL6gbKhvP
+  Database Name: sampledb
+ Connection URL: mysql://mysql:3306/
+
+////////////////////////////////////////////
+// Setup minishift project and volumes
+
+// Create a pv and, second, a pvc via yaml
+oc create -f pv.yaml
+oc create -f pvc.yaml
+
+// Create a pvc
+oc volume dc/phptest --add --name=images --type=persistentVolumeClaim --mount-path=/Users/hofmanma/Documents/Openshift/storage/test --claim-name=hofmanmaspvc --claim-size=200Mi --containers=phptest --overwrite
+
+// YAML Syntax
+http://docs.ansible.com/ansible/latest/YAMLSyntax.html
+
+// Start a cluster on a mounted directory
+oc cluster up --host-data-dir=/Users/hofmanma/Documents/Openshift/storage/test/data host-config-dir=/Users/hofmanma/Documents/Openshift/storage/test/config
+
+// Create a new app
+oc new-app --name='phptest' --labels name='phptest' php~https://hofmanma:Will1009@github.com/hofmanma/phpTest.git
+
+// Create persistent Volume
+oc create -f ./"Sample Yamls"/pv.yaml
+
+// Create persistent volume claim
+oc create -f ./"Sample Yamls"/pvc.yaml
+
+// Enable logging
+oc cluster up --logging
+
+// Login as admin
+oc login -u system:admin
+
+// Login as developer
+oc login -u developer
+
+// Using an image when clustering up
+oc cluster up --image=myregistry.example.com/ose/origin
+
+// Get the registry service from the default namespace
+oc get svc docker-registry -n default
+
+// Lesen des App Status
+oc get dc/phptest
+
+// Ausgabe der App-Infos
+oc describe dc phptest
+
+// Manual Deployment
+oc deploy phptest --latest
+oc rollout phptest latest
+
+// Expose the app as ?
+oc expose svc phptest --name=phptest
+oc expose dc phptest --port=8080
