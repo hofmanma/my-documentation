@@ -1,7 +1,8 @@
-
+///////////////////////////////////
+// This file includes a list of well proved docker Images
+// which assist in daily practice.
 //////////////////////////////////////////////////////////
 // 1. Automatische Updateinstallation in Docker
 //    .. hub.docker.com - Docker Image: v2tec/watchtower
-
 // 2. Web UI for docker containers
 //    .. hub.docker.com - Docker Image: portainer
