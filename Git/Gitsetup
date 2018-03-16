@@ -11,3 +11,7 @@ git push -u origin master
 // Collecting files for commit
 // The add-command only adds files to the next commit.
 // Add does not maintain a list of files over several commits.
+
+////////////////////////////////////
+// Anzeigen der lokalen Änderungen
+git status
