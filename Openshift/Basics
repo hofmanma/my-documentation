@@ -13,7 +13,7 @@
     Openshift: Boot a new container from the updated image
 -----------------------------------------
 .. Deploy
- 3. Run Software Package 
+ 3. Run Software Package
     Run an image as a container
 -----------------------------------------
 .. Build
@@ -97,6 +97,15 @@
 + Add an autoscaler by clicking on [Actions]/[Add Autoscaler]
 + Autoscalers allow the definition of a minimum and maximum of pods as well as the
   definition of CPU Request targets.
+
+/////////////////////////////
+// Replication Controller
+//////////////////////////
++ Ensures, that
+  .. a specified number of pod replicas
+  .. are running at one time.
++ "A Homogenous set of pods is always up and available"
++ Allows to specify the number of replicas or the restart policy.
 
 //////////////////////////////
 // Secrets

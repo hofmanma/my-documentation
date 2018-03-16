@@ -1,0 +1,19 @@
+///////////////////////////////////////////
+// Template Resources Build Configuration
+/////////////////////
++ A build configuration describes
+   .. a single build definition
+   .. a set of triggers for when a new build should be created.
++ A build configuration is defined by a BuildConfig object,
+  .. that can be used to create a new instance.
+
+///////////////////////////////////////////////
+// Template Resources Deployment Configuration
+//////////////////////
++ A DeploymentConfig is an object that describes a single deployment of an
+  application in OpenShift.
++ It defines:
+    .. the recreation strategy
+    .. the allocated Resources
+    .. port usage
+    .. a set of triggers that define when a redeployment is to be performed.
