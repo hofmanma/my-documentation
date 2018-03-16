@@ -17,3 +17,60 @@
     .. the allocated Resources
     .. port usage
     .. a set of triggers that define when a redeployment is to be performed.
+
+/////////////////////////////////
+// Deployment Strategies
+/////////////////////////
+// Rolling
+////////////
++ Default Strategy
++ Process
+    1. Execute prelifecycle Hook
+    2. Scale Up the new deployment based on the surge configuration
+    3. Scale down the old deployment based on the max unavailable configuration
+    4. Repeat the scaling until the desired replica count is reached and the old deployment is has been
+       scaled to zero.
+    5. Execute any post lifecycle hook.
+//////////////
+// Recreate
+/////////////
++ has basic rollout behaviour and supports lifecycle hooks for
+  injecting code into the deployment process.
++ process
+    1. excecute any pre lifecycle hook
+    2. Scale down the previous deployment to zero
+    3. Execute any mid lifecycle hook
+    4. Scale up the new deployment
+    5. Execute any post lifecycle hook.
+/////////////////
+// Blue-Green
+//////////////
++ minimizes the time it takes to perform a deployement cutover.
++ by ensuring you have two versions of your application stacks available
+  during the deployment.
+/////////////////
+// A/B
+/////////
++ Deploy/Test/Rollback
++ Testing is part of the deployment
++ Integrated rollback function
+///////////////
+// Canary
+//////////
++ Rollout to restricted users
++ Test
++ Global Rollout out
++ Integrated rollback function
+
+////////////////////
+// Rollbacks
++ Rollbacks revert an application back to a previous revision
++ by REST API, CLI or Web UI
+
+////////////////////
+// Lifecycle Hooks
+///////////////////
++ Inject behaviour into the deployment process
++ pre deployment hook is executed just before the image is deployed.
++ mod deployment hook is executed after all instances of your old image are shut down.
++ post deployment hook is executed just after the new image is deployed.
