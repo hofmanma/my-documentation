@@ -98,7 +98,7 @@ docker network inspect c81162d0ae8b
 // Architecture
 ////////////////
 -----------------------------------------
- 5. group pods to services/Applications
+ 5. group pods to Services/Applications
 -----------------------------------------
 .. Deploy
  4. group multiple containers to pods.

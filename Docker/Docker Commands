@@ -168,6 +168,6 @@ docker load -i Zieltarfile
 docker run busy box-1-export [.-d /home/test ] && echo ‚Directory found‘ || echo ‚Directory not found‚
 
 // Beim Export und Import wird eine neue History erzeugt. Anzeigen der History eines Images
-docker history  busybox
+docker history busybox
 docker history busybox-1
 docker history busybox-1-export

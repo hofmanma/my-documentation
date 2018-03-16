@@ -1,0 +1,76 @@
+//////////////////////////////
+// Leverage Containers
+///////////////////////
+// Integrated Registry
++ Openshift provides an integrated private registry.
++ You can control which users can access and deploy specific images.
++ When user build and deploy containerized applications, Openshift keeps track of
+  which images map to which apps and allows you to update images and rollback changes easily.
+/////////////////////
+// Build Automation
++ Openshift can run standard docker builds based on the dockerfiles you provide.
++ Openshift also provides a "source-to-image" feature which allows you to specify the sources
+  from which to generate your images.
+////////////////////////////////////
+// Native Kubernetes orchestration
++ Real applications span multiple containers, which need to be scheduled across
+  mulitple hosts.
++ Kubernetes provides
+    .. automated, policy based scheduling
+    .. intregrated service discovery
+    .. container health management
+    .. horiontal Scaling
+    .. integrated Storage
+
+////////////
+// Pods
+//////////
++ one or more containers deployed together on one host
++ smallest compute unit that can be defined, deployed and managed.
++ have a lifecycle.
+      1. Define
+      2. Assigned to run on a node.
+        -> they run until their containers exit or they are removed from another reason.
+
+//////////////
+// Services
+///////////
++ A Kubernetes Service serves as an internal load balancer.
++ It defines a set of replicated pods in order to proxy the connections it receives to them.
++ Backing pods can be added to or removed from a service arbitrarily while the service remains
+  consistently available.
+
+//////////////////////////////////
+// Template Resources Definition
++ A template describes a set of objects
+    .. that can be parameterized
+    .. that can be processed to produce a list of objects for creation by Openshift.
++ A template can be processed to create anything you have permission to create within a project.
+    .. Services
+    .. Build configurations
+    .. Deployment configurations
++ A template consists of
+    + Project specific configurations
+        .. Environment variables
+    + Build config
+    + Deployment Configuration
+    + A Replication Controller
+    + A Service
+----------------------------
+  Total Sum: Application Instance.
+
+//////////////////////////////
+// Scaling Applications
+////////////////////////
++ Manually by increasing the pod number
++ Automated by an autoscaler.
++ Autoscalers will automatically scale up/scale down your deployments
+  based on different factors.
++ Before adding an autoscaler, please scale your deployment down to one pod.
++ Add an autoscaler by clicking on [Actions]/[Add Autoscaler]
++ Autoscalers allow the definition of a minimum and maximum of pods as well as the
+  definition of CPU Request targets.
+
+//////////////////////////////
+// Secrets
+///////////
