@@ -1,3 +1,26 @@
+////////////////////////////////////
+// Architecture
+////////////////
+-----------------------------------------
+ 5. group pods to Services/Applications
+-----------------------------------------
+.. Deploy
+ 4. group multiple containers to pods.
+    All containers of a pod will share one pvc and ip/ports
+    Openshift: Shutdown a running container
+    Openshift: Boot a new container from the updated image
+-----------------------------------------
+.. Deploy
+ 3. Run an image as a container
+-----------------------------------------
+.. Build
+ 2. Create an image from the Dockerfile
+    Pull an image from a remote repository
+-----------------------------------------
+.. Build
+ 1. Create/Download a Dockerfile
+-----------------------------------------
+
 //////////////////////////////
 // Leverage Containers
 ///////////////////////
