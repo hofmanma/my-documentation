@@ -106,7 +106,3 @@
   .. are running at one time.
 + "A Homogenous set of pods is always up and available"
 + Allows to specify the number of replicas or the restart policy.
-
-//////////////////////////////
-// Secrets
-///////////
