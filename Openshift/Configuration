@@ -74,3 +74,59 @@
 + pre deployment hook is executed just before the image is deployed.
 + mod deployment hook is executed after all instances of your old image are shut down.
 + post deployment hook is executed just after the new image is deployed.
+
+/////////////////////////////
+// Configuration Management
+///////////////////////////
++ Separate dynamic configuration from static runtime software
++ Change the configuration without rebuilding the runtime
++ Runtime: config -----inject-----> image
++ Mechanisms by add configuration to a running pod:
+    .. Secrets
+    .. Configuration maps
+    .. Environment Variables
+    .. Downward API
+    .. Layered Builds
+//////////////////////////
+// Secrets
+///////////
++ Add sensitive information
+    .. Usernames
+    .. Passwords
+    .. Certificates
++ adding
+    .. as an environment variable
+    .. as an pvc
+    --> Howto: Openshift printout Page 63, 64
+////////////////////////
+// Configuration Maps
+/////////////////////
++ equal to Secrets, but, with non sensitive information
++ Updates change the files in the pod's mounted filesystems.
+  (Secrets don't)
+    --> Howto: Mount Configuration Maps as Volumes: Printout Page 66, 67
+//////////////////////////
+// Environment Variables
+////////////////////////
+  --> Howto: Adding and Removing: Printout Page 69ff
+/////////////////////
+// Downward API
+////////////////
++ Enable Pods retrieve their metadata without having to call into the
+  Kubernetes API
++ The following Metadata can be retrieved and used to configure the running pods:
+    .. Labels
+    .. Annotations
+    .. Pod name, namespace, and IP Address
+    .. Pod CBU/memory request and limit information
++ Adding
+    .. as an environment variable
+    .. as an pvc / Howto: Printout Page 73
+////////////////////////////////
+// Handle Large configurations
++ Using Persisted Volumes (PV)
++ Using Layered Images
+
+/////////////////////////////////
+// Open issues
+// + Layered Image concept
