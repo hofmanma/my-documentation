@@ -53,55 +53,8 @@
 // .. The microcontroller is not detected by Mac OS X
 // .. The microcontroller does not run. When starting, a Led lights up and down and finished.
 //////////////////////////////////////
-linking everything together...
-"/Users/hofmanma/Library/Arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/1.20.0-26-gb404fb9-2/bin/xtensa-lx106-elf-gcc" -g  -Os -nostdlib -Wl,--no-check-sections -u call_user_start -u _printf_float -u _scanf_float -Wl,-static "-L/Users/hofmanma/Library/Arduino15/packages/esp8266/hardware/esp8266/2.4.1/tools/sdk/lib" "-L/Users/hofmanma/Library/Arduino15/packages/esp8266/hardware/esp8266/2.4.1/tools/sdk/ld" "-L/Users/hofmanma/Library/Arduino15/packages/esp8266/hardware/esp8266/2.4.1/tools/sdk/libc/xtensa-lx106-elf/lib" "-Teagle.flash.4m1m.ld" -Wl,--gc-sections -Wl,-wrap,system_restart_local -Wl,-wrap,spi_flash_read  -o "/var/folders/4f/w2f2qw79297gttsy14134s140000gn/T/arduino_build_339052/Blink.ino.elf" -Wl,--start-group "/var/folders/4f/w2f2qw79297gttsy14134s140000gn/T/arduino_build_339052/sketch/Blink.ino.cpp.o" "/var/folders/4f/w2f2qw79297gttsy14134s140000gn/T/arduino_build_339052/arduino.ar" -lhal -lphy -lpp -lnet80211 -llwip2 -lwpa -lcrypto -lmain -lwps -laxtls -lespnow -lsmartconfig -lairkiss -lwpa2 -lstdc++ -lm -lc -lgcc -Wl,--end-group  "-L/var/folders/4f/w2f2qw79297gttsy14134s140000gn/T/arduino_build_339052"
-"/Users/hofmanma/Library/Arduino15/packages/esp8266/tools/esptool/0.4.13/esptool" -eo "/Users/hofmanma/Library/Arduino15/packages/esp8266/hardware/esp8266/2.4.1/bootloaders/eboot/eboot.elf" -bo "/var/folders/4f/w2f2qw79297gttsy14134s140000gn/T/arduino_build_339052/Blink.ino.bin" -bm qio -bf 40 -bz 4M -bs .text -bp 4096 -ec -eo "/var/folders/4f/w2f2qw79297gttsy14134s140000gn/T/arduino_build_339052/Blink.ino.elf" -bs .irom0.text -bs .text -bs .data -bs .rodata -bc -ec
-Der Sketch verwendet 246275 Bytes (23%) des Programmspeicherplatzes. Das Maximum sind 1044464 Bytes.
-Globale Variablen verwenden 32240 Bytes (39%) des dynamischen Speichers, 49680 Bytes für lokale Variablen verbleiben. Das Maximum sind 81920 Bytes.
-/Users/hofmanma/Library/Arduino15/packages/esp8266/tools/esptool/0.4.13/esptool -vv -cd nodemcu -cb 115200 -cp /dev/cu.Bluetooth-Incoming-Port -ca 0x00000 -cf /var/folders/4f/w2f2qw79297gttsy14134s140000gn/T/arduino_build_339052/Blink.ino.bin
-esptool v0.4.13 - (c) 2014 Ch. Klippel <ck@atelier-klippel.de>
-	setting board to nodemcu
-Beim Hochladen des Sketches ist ein Fehler aufgetreten
-	setting baudrate from 115200 to 115200
-	setting port from /dev/tty.usbserial to /dev/cu.Bluetooth-Incoming-Port
-	setting address from 0x00000000 to 0x00000000
-	espcomm_upload_file
-	espcomm_upload_mem
-opening port /dev/cu.Bluetooth-Incoming-Port at 115200
-	tcgetattr
-	tcsetattr
-	serial open
-opening bootloader
-resetting board
-trying to connect
-	espcomm_send_command: sending command header
-	espcomm_send_command: sending command payload
-trying to connect
-	espcomm_send_command: sending command header
-	espcomm_send_command: sending command payload
-trying to connect
-	espcomm_send_command: sending command header
-	espcomm_send_command: sending command payload
-resetting board
-trying to connect
-	espcomm_send_command: sending command header
-	espcomm_send_command: sending command payload
-trying to connect
-	espcomm_send_command: sending command header
-	espcomm_send_command: sending command payload
-trying to connect
-	espcomm_send_command: sending command header
-	espcomm_send_command: sending command payload
-resetting board
-trying to connect
-	espcomm_send_command: sending command header
-	espcomm_send_command: sending command payload
-trying to connect
-	espcomm_send_command: sending command header
-	espcomm_send_command: sending command payload
-trying to connect
-	espcomm_send_command: sending command header
-	espcomm_send_command: sending command payload
-warning: espcomm_sync failed
-error: espcomm_open failed
-error: espcomm_upload_mem failed
+// Device under ports missing: /dev/cu.wchusbserial1420
+// + https://github.com/esp8266/Arduino/issues/732
+// + https://arduino.stackexchange.com/questions/34775/arduino-nano-not-visible-in-serial-ports-mac-os
+// + http://yucelkilic.com/clone-arduino-mega-and-usb-connection-issue-in-mac-os-x-sierra/?i=1
+//////////////////////////////
