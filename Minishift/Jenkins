@@ -188,17 +188,89 @@ pipeline {
             }
             steps {
                 echo "Hello ${params.PERSON}"
+                ////////////////////////////////////////
+                // Script Directive
+                //////////////////////
+                // + The script step takes a block of Scripted Pipeline and executes that in the Declarative
+                //   Pipeline.
+                // + For most use-cases, the script step should be unnecessary in Declarative Pipelines,
+                //   but it can provide a useful "escape hatch."
+                script {
+                    def browsers = ['chrome', 'firefox']
+                    for (int i = 0; i < browsers.size(); ++i) {
+                        echo "Testing the ${browsers[i]} browser"
+                    }
+                }
             }
         }
         stage('Example Deploy') {
-            ///////////////////
+            //////////////////////////
             // When Directive
-            //////////////////
+            //////////////////////
+            // + The when directive allows the Pipeline to determine whether the stage should be executed
+            //   depending on the given condition. The when directive must contain at least one condition.
+            // + If the when directive contains more than one condition, all the child conditions must return true
+            //   for the stage to execute
+            ///////////////////////////////
+            // + branch
+            //   Execute the stage when the branch being built matches the branch pattern given,
+            //   for example: when { branch 'master' }. Note that this only works on a multibranch Pipeline.
+            // + environment
+            //   Execute the stage when the specified environment variable is set to the given value,
+            //   for example: when { environment name: 'DEPLOY_TO', value: 'production' }
+            // + expression
+            //   Execute the stage when the specified Groovy expression evaluates to true,
+            //   for example: when { expression { return params.DEBUG_BUILD } }
+            // + not
+            //   Execute the stage when the nested condition is false. Must contain one condition.
+            //   For example: when { not { branch 'master' } }
+            // + allOf ( && )
+            //   Execute the stage when all of the nested conditions are true.
+            //   Must contain at least one condition.
+            //   For example: when { allOf { branch 'master'; environment name: 'DEPLOY_TO', value: 'production' } }
+            // + anyOf ( || )
+            //   Execute the stage when at least one of the nested conditions is true.
+            //   Must contain at least one condition.
+            //   For example: when { anyOf { branch 'master'; branch 'staging' } }
             when {
                 branch 'production'
             }
             steps {
                 echo 'Deploying'
+            }
+        }
+        stage('Parallel Stage') {
+            when {
+                branch 'master'
+            }
+            failFast true
+            /////////////////////////////////
+            // Parallel Directive
+            /////////////////////////
+            // + Stages in Declarative Pipeline may declare a number of nested stages within them,
+            //   which will be executed in parallel.
+            // + Note that a stage must have one and only one of either steps or parallel.
+            // + The nested stages cannot contain further parallel stages themselves, but otherwise behave
+            //   the same as any other stage.
+            // + Any stage containing parallel cannot contain agent or tools, since those are not relevant
+            //   without steps.
+            parallel {
+                stage('Branch A') {
+                    agent {
+                        label "for-branch-a"
+                    }
+                    steps {
+                        echo "On Branch A"
+                    }
+                }
+                stage('Branch B') {
+                    agent {
+                        label "for-branch-b"
+                    }
+                    steps {
+                        echo "On Branch B"
+                    }
+                }
             }
         }
     }
@@ -234,6 +306,7 @@ pipeline {
         }
     }
 }
+
 ////////////////////////////////////
 // Scripted Pipeline Fundamentals
 //////////////////////////////////
