@@ -65,7 +65,78 @@ pipeline {
     //   the optionally defined label parameter
     // + dockerfile
     //   the Pipeline, or stage, with a container built from a Dockerfile contained in the source repository
-    agent any // Execute this Pipeline or any of its stages, on any available agent.
+    ///////////////////////////////
+    // Common parameters
+    // + label
+    //   A string. The label on which to run the Pipeline or individual stage.
+    //   This option is valid for node, docker and dockerfile, and is required for node.
+    // + customWorkspace
+    //   A string. Run the Pipeline or individual stage this agent is applied to within this
+    //   custom workspace, rather than the default.
+    //   It can be either a relative path, in which case the custom workspace will be under the
+    //   workspace root on the node, or an absolute path
+    agent {
+      node {
+        label 'my-defined-label'
+        customWorkspace '/some/other/path'
+      }
+    }
+    // Execute this Pipeline or any of its stages, on any available agent.
+    agent any
+    // Execute all the steps defined in this Pipeline within a newly created container
+    // of the given name and tag (maven:3-alpine).
+    agent { docker 'maven:3-alpine' }
+    //////////////////////////////
+    // Environment
+    ////////////////
+    // + The environment directive specifies a sequence of key-value pairs which will be defined as
+    //   environment variables for the all steps, or stage-specific steps,
+    //   depending on where the environment directive is located within the Pipeline.
+    // + An environment directive used in the top-level pipeline block will apply to all steps
+    //   within the Pipeline.
+    // + An environment directive defined within a stage will only apply the given environment variables
+    //   to steps within the stage.
+    environment {
+        CC = 'clang'
+    }
+    /////////////////////
+    // Options
+    /////////////
+    // + The options directive allows configuring Pipeline-specific options from within the Pipeline itself.
+    // + Pipeline provides a number of these options, such as buildDiscarder,
+    //   but they may also be provided by plugins, such as timestamps
+    options {
+        timeout(time: 1, unit: 'HOURS')
+    }
+    ///////////////////
+    // Parameters
+    ///////////////
+    // + The parameters directive provides a list of parameters which a user should provide
+    //   when triggering the Pipeline.
+    // + The values for these user-specified parameters are made available to Pipeline steps via
+    //   the params object - see stage('Example')
+    parameters {
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+    }
+    ////////////////////
+    // Triggers
+    //////////////
+    // + The triggers directive defines the automated ways in which the Pipeline should be re-triggered.
+    // + For Pipelines which are integrated with a source such as GitHub or BitBucket,
+    //   triggers may not be necessary as webhooks-based integration will likely already be present.
+    // + The triggers currently available are cron, pollSCM and upstream
+    ///////////////////////
+    // + cron
+    //   Accepts a cron-style string to define a regular interval at which the Pipeline should be re-triggered
+    // + pollSCM
+    //   Accepts a cron-style string to define a regular interval at which Jenkins should check for new
+    //   source changes. If new changes exist, the Pipeline will be re-triggered
+    // + upstream
+    //   Accepts a comma separated string of jobs and a threshold. When any job in the string finishes
+    //   with the minimum threshold, the Pipeline will be re-triggered
+    triggers {
+        cron('H */4 * * 1-5')
+    }
     stages {
         // Defines the "Build" stage.
         // Stage is a syntax block that describes a stage of this Pipeline
@@ -96,6 +167,70 @@ pipeline {
                 // Perform some steps related to the "Deploy" stage.
                 sh 'make publish'
             }
+        }
+        stage('Example') {
+            ///////////////////////////////////////////
+            // Input Directive
+            ///////////////////////
+            // + The input directive on a stage allows you to prompt for input, using the input step.
+            // + The stage will pause after any options have been applied, and before entering the stage`s
+            //   agent or evaluating its when condition.
+            // + If the input is approved, the stage will then continue.
+            // + Any parameters provided as part of the input submission will be available in the environment
+            //   for the rest of the stage
+            input {
+              message "Should we continue?"
+              ok "Yes, we should."
+              submitter "alice,bob"
+              parameters {
+                  string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+              }
+            }
+            steps {
+                echo "Hello ${params.PERSON}"
+            }
+        }
+        stage('Example Deploy') {
+            ///////////////////
+            // When Directive
+            //////////////////
+            when {
+                branch 'production'
+            }
+            steps {
+                echo 'Deploying'
+            }
+        }
+    }
+    ///////////////////////////
+    // post
+    ///////////
+    // + The post section defines one or more additional steps that are run upon the completion of
+    //   a Pipeline’s or stage’s run (depending on the location of the post section within the Pipeline
+    // + post can support one of the following post-condition blocks:
+    //   always, changed, failure, success, unstable, and aborted
+    ////////////////////////////////////
+    // + always
+    //   Run the steps in the post section regardless of the completion status of the Pipeline’s or stage’s run.
+    // + changed
+    //   Only run the steps in post if the current Pipeline’s or stage’s run has a different completion
+    //   status from its previous run.
+    // + failure
+    //   Only run the steps in post if the current Pipeline’s or stage’s run has a "failed" status,
+    //   typically denoted by red in the web UI.
+    // + success
+    //   Only run the steps in post if the current Pipeline’s or stage’s run has a "success" status,
+    //   typically denoted by blue or green in the web UI.
+    // + unstable
+    //   Only run the steps in post if the current Pipeline’s or stage’s run has an "unstable" status,
+    //   usually caused by test failures, code violations, etc.
+    //   This is typically denoted by yellow in the web UI.0
+    // + aborted
+         Only run the steps in post if the current Pipeline’s or stage’s run has an "aborted" status,
+         usually due to the Pipeline being manually aborted. This is typically denoted by gray in the web UI.
+    post {
+        always {
+            echo 'I will always say Hello again!'
         }
     }
 }
