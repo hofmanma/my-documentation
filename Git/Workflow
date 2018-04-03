@@ -32,11 +32,11 @@
 // + represents all the very stable, released revisions of a project
 //  .. after a release has been completely tested in the release branches
 // + Each release is properly tagged.
-//////////////
+///////////////
 // Workflow
 /////////////
-Feature -> Development -> Release -back-> development
-                                  -back-> master
-                       -> Release -> hotfix -back-> Development
-                                            -back-> release
-                       -> Release -> Master
+// Feature -> Development -> Release -back-> development
+//                                   -back-> master
+//                        -> Release -> hotfix -back-> Development
+//                                             -back-> release
+//                        -> Release -> Master
