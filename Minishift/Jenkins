@@ -3,6 +3,170 @@
 // https://github.com/openshift/origin/blob/master/examples/jenkins/README.md
 // https://jenkins.io/doc/
 
+/////////////////////////////////
+// What is Jenkins
+////////////////////
+// + Jenkins is a self-contained, open source automation server which can be used to automate
+//   all sorts of tasks related to building, testing, and delivering or deploying software.
+// + Jenkins can be installed through native system packages, Docker, or even run standalone by
+//   any machine with a Java Runtime Environment (JRE) installed.
+
+/////////////////////////////////
+// What is a Jenkins Pipeline
+//////////////////////////////
+// + Jenkins Pipeline (or simply "Pipeline") is a suite of plugins which supports implementing and
+//   integrating continuous delivery pipelines into Jenkins.
+// + A continuous delivery pipeline is an automated expression of your process for getting software
+//   from version control right through to your users and customers.
+// + Jenkins Pipeline provides an extensible set of tools for modeling simple-to-complex delivery pipelines
+//   "as code". The definition of a Jenkins Pipeline is typically written into
+//   a text file (called a Jenkinsfile) which in turn is checked into a project’s source control repository
+//////////////////////////////////
+// Declarative vs. Scripted
+/////////////////////////////
+// + A Jenkinsfile can be written using two types of syntax - Declarative and Scripted.
+// + Declarative and Scripted Pipelines are constructed fundamentally differently.
+//   Declarative Pipeline is a more recent feature of Jenkins Pipeline which:
+//      .. provides richer syntactical features over Scripted Pipeline syntax, and
+//      .. is designed to make writing and reading Pipeline code easier.
+// + Many of the individual syntactical components (or "steps") written into a Jenkinsfile, however,
+//   are common to both Declarative and Scripted Pipeline.
+/////////////////////////////////////////////////////////////
+// Declarative Sample - Jenkinsfile (Declarative Pipeline)
+////////////////////////////////////////////////////
+// pipeline is Declarative Pipeline-specific syntax that defines a "block" containing all content
+// and instructions for executing the entire Pipeline.
+pipeline {
+    ///////////////////////////////
+    // Agent
+    ///////////////
+    // + agent is Declarative Pipeline-specific syntax that instructs Jenkins to allocate an
+    //   executor (on a node) and workspace for the entire Pipeline.
+    // + The agent section specifies where the entire Pipeline, or a specific stage, will execute in the
+    //   Jenkins environment depending on where the agent section is placed.
+    // + The section must be defined at the top-level inside the pipeline block,
+    //   but stage-level usage is optional
+    ////////////////////
+    // + any
+    //   Execute the Pipeline, or stage, on any available agent. For example: agent any
+    // + none
+    //   When applied at the top-level of the pipeline block no global agent will be allocated for the
+    //   entire Pipeline run and each stage section will need to contain its own agent section.
+    //   For example: agent none
+    // + label
+    //   Execute the Pipeline, or stage, on an agent available in the Jenkins environment with
+    //   the provided label. For example: agent { label 'my-defined-label' }
+    // + node
+    //   agent { node { label 'labelName' } } behaves the same as agent { label 'labelName' },
+    //   but node allows for additional options (such as customWorkspace).
+    // + docker
+    //   Execute the Pipeline, or stage, with the given container which will be dynamically
+    //   provisioned on a node pre-configured to accept Docker-based Pipelines, or on a node matching
+    //   the optionally defined label parameter
+    // + dockerfile
+    //   the Pipeline, or stage, with a container built from a Dockerfile contained in the source repository
+    agent any // Execute this Pipeline or any of its stages, on any available agent.
+    stages {
+        // Defines the "Build" stage.
+        // Stage is a syntax block that describes a stage of this Pipeline
+        stage('Build') {
+            // steps is Declarative Pipeline-specific syntax that describes the steps
+            // to be run in this stage.
+            steps {
+                // Perform some steps related to the "Build" stage.
+                // Sequential or parallel execution ?
+                sh 'make' // sh is a Pipeline step (provided by the Pipeline: Nodes and Processes plugin)
+                          // that executes the given shell command.
+
+            }
+        }
+        // Defines the "Test" stage.
+        stage('Test') {
+            steps {
+                // Perform some steps related to the "Test" stage.
+                sh 'make check'
+                // junit is another a Pipeline step (provided by the JUnit plugin)
+                // for aggregating test reports.
+                junit 'reports/**/*.xml'
+            }
+        }
+        // Defines the "Deploy" stage.
+        stage('Deploy') {
+            steps {
+                // Perform some steps related to the "Deploy" stage.
+                sh 'make publish'
+            }
+        }
+    }
+}
+////////////////////////////////////
+// Scripted Pipeline Fundamentals
+//////////////////////////////////
+// + In Scripted Pipeline syntax, one or more node blocks do/es the core work throughout the entire Pipeline.
+// + Although this is not a mandatory requirement of Scripted Pipeline syntax, confining your Pipeline’s
+//   work inside of a node block does two things:
+//    .. Schedules the steps contained within the block to run by adding an item to the Jenkins queue.
+//       As soon as an executor is free on a node, the steps will run.
+//    .. Creates a workspace (a directory specific to that particular Pipeline) where work can be done on
+//       files checked out from source control.
+// + Caution: Depending on your Jenkins configuration, some workspaces may not get automatically cleaned up
+//   after a period of inactivity. See tickets and discussion linked from JENKINS-2111 for more information.
+///////////////////////////////////////////////////////
+// Scripted Sample - Jenkinsfile (Scripted Pipeline)
+///////////////////
+node {  // Execute this Pipeline or any of its stages, on any available agent.
+    // Defines the "Build" stage. stage blocks are optional in Scripted Pipeline syntax.
+    // However, implementing stage blocks in a Scripted Pipeline provides clearer visualization of
+    // each stage's subset of tasks/steps in the Jenkins UI.
+    stage('Build') {
+        // Perform some steps related to the "Build" stage.
+        // Sequential or parallel execution?
+    }
+    // Defines the "Test" stage.
+    stage('Test') {
+        // Perform some steps related to the "Test" stage.
+    }
+    // Defines the "Deploy" stage.
+    stage('Deploy') {
+        // Perform some steps related to the "Deploy" stage.
+    }
+}
+
+//////////////////////////////////
+// Why Pipeline?
+//////////////////
+// + Jenkins is, fundamentally, an automation engine which supports a number of automation patterns.
+// + Pipeline adds a powerful set of automation tools onto Jenkins, supporting use cases that span from
+//   simple continuous integration to comprehensive CD pipelines.
+// + By modeling a series of related tasks, users can take advantage of the many features of Pipeline:
+//    .. Code: Pipelines are implemented in code and typically checked into source control,
+//       giving teams the ability to edit, review, and iterate upon their delivery pipeline.
+//    .. Durable: Pipelines can survive both planned and unplanned restarts of the Jenkins master.
+//    .. Pausable: Pipelines can optionally stop and wait for human input or approval before continuing
+//       the Pipeline run.
+//    .. Versatile: Pipelines support complex real-world CD requirements, including the ability to
+//       fork/join, loop, and perform work in parallel.
+//    .. Extensible: The Pipeline plugin supports custom extensions to its DSL [1] and multiple
+//       options for integration with other plugins.
+
+//////////////////////////////////
+// Basic Terms and Concepts
+//////////////////////////////
+// Nodes
+// + A node is a machine which is part of the Jenkins environment and is capable
+//   of executing a Pipeline.
+//////////////
+// Stages
+// + A stage block defines a conceptually distinct subset of tasks performed through the
+//   entire Pipeline (e.g. "Build", "Test" and "Deploy" stages),
+//   which is used by many plugins to visualize or present Jenkins Pipeline status/progress
+/////////////
+// Steps
+// + A single task. Fundamentally, a step tells Jenkins what to do at a particular point in time
+//  (or "step" in the process).
+// + For example, to execute the shell command make use the sh step: sh 'make'.
+// + When a plugin extends the Pipeline DSL, [1] that typically means the plugin has implemented a new step.
+
 //////////////////////////////////
 // Important Properties
 // + Most used tool in CI
