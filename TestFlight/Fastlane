@@ -227,3 +227,10 @@ lane :beta do
     xcodeproj: "Example.xcodeproj"
   )
 end
+
+////////////////////////////////////
+// Troubleshooting
+//////////////////////
+// Fastlane stops building, since XCode cannot be located.
+//////////////////////
+// https://stackoverflow.com/questions/17980759/xcode-select-active-developer-directory-error/17980786#17980786
