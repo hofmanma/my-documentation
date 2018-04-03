@@ -1,0 +1,42 @@
+
+////////////////////////////////////
+// Feature Branch
+// Name: feature-[Task_ID]
+// + Developer work on new features
+// + Feature branches will be named according to the Story/Task_ID in Jira, which represent the features
+// + When a feature is done, it is pulled to the development branch
+// + The code is then reviewed and the pull request accepted.
+// + The feature branch is deleted.
+///////////////////////////////////
+// development branches
+// + contains all the latest features and bugfixes.
+// + It should always be as stable as possible
+// + It should always be back compatible regarding the REST API
+// + DTOs should not be changed when pulled from feature branches
+// + Merging from feature to development branch is only possible once all tests have passed.
+//////////////////////////////////
+// Release branches
+// Name: release-[M.m]
+// + represent Release Canditates
+// + Allows further development of features without disturbing a given release version
+// + Merges from the development branches
+// + Is merged back to development and master branches when it is ready for delivery (done by pull requests).
+/////////////////////////////////
+// Hotfix branches
+// Name: hotfix-[M.m.p]
+// + for Fixing releases
+// + must be merged back to develop and release branches when done.
+////////////////////////////////
+// Master branch
+// Name: master
+// + represents all the very stable, released revisions of a project
+//  .. after a release has been completely tested in the release branches
+// + Each release is properly tagged.
+//////////////
+// Workflow
+/////////////
+Feature -> Development -> Release -back-> development
+                                  -back-> master
+                       -> Release -> hotfix -back-> Development
+                                            -back-> release
+                       -> Release -> Master
