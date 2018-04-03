@@ -1,0 +1,68 @@
+/////////////////////////////////////////////
+// Externe und Interne Benutzer
+//////////////////////////////
+// Internal Testers
+//////////////////////
+// Each app can be tested by up to 25 members of your team who have been assigned the Admin, App Manager,
+// Developer, or Marketer role in iTunes Connect. Each member can test on up to 30 devices.
+// Internal testers can access all of your beta builds available for testing.
+//////////////////////
+// External testers
+////////////////////
+// + Once you’re ready, you can invite up to 10,000 external testers who do not need to be part of
+//   your team to beta test an app that you intend for public release on the App Store.
+// + You can organize external testers into custom groups and share different builds with each group,
+//   depending on which features you want them to test.
+// + Before external testing can begin, the app must pass Beta App Review to make sure it complies with
+//   the full App Store Review Guidelines. Only the first build for the beta version requires a full review.
+/////////////////////////////
+// Einladung erneut senden
+// + http://de.iosberry.com/so-senden-sie-externe-testereinladungen-erneut-an-apples-testflight-dienst.html
+
+//////////////////////////////////
+// Summarized
+////////////////
+// + Maximum 25 internal Testers
+// + Maximim of 10000 external testers per App
+// + Builds are available for 90 days.
+// + You can upload a new build to continue Testing
+// + You can turn off testing at any time.
+// + iOS 8 or higher.
+
+///////////////////////////////
+// Multiple Builds of one App
+/////////////////////////////
+// If a tester is assigned to multiple groups and Builds
+// Testflight always shows the latest build version for
+// installation and download.
+
+//////////////////////////////////
+// Using Testflight Step-by-Step
+////////////////////////////////
+// 1. Open App and TestFlight
+// 2. Fill in the Testinformation
+// 3. Add iTunes Connect Users. (INTERNAL Testers)
+//    .. Adding testers of my team.
+//    .. Once a build is uploaded all internal testers are automatically notfified.
+
+///////////////////////////////////
+// Adding External Testers
+// 1. Add External testers, which are not part of my Team
+//    .. Add a group. The group name can be edited later.
+// 2. Add new or existing Testers, Manually or by CSV
+//    .. Email is mandatory. First and last names are optional
+// 3. Add a build to the group.
+//    .. Click on Builds
+//    .. Select the build you want to add.
+// 4. Add Testing information.
+//    .. Testing information can be localized.
+// 5. Submit for review.
+////////////////////////////////////////////
+// + You can add more testers and start testing once the build is approved.
+// + You can add more builds to a group
+// + You can add more groups and send builds to them as well.
+
+///////////////////////////////
+// All Testers
+///////////////////////////////
+// + Shows all engaged testers
