@@ -1,0 +1,229 @@
+///////////////////////////////////
+// Introduction
+/////////////////////////////////
+// https://docs.fastlane.tools/
+////////////////////////////////
+// + Fastlane is the tool to release your iOS and Android app. It handles all tedious tasks,
+//   like generating screenshots, dealing with code signing, and releasing your application.
+// + Fastlane team provide a really good documentation where you can found all the details and
+//   response to your questions.
+
+///////////////////
+// Installation
+/////////////////
+// 1. Make sure you have the latest version of the Xcode command line tools installed:
+//    $ xcode-select --install
+// 2. Install fastlane using
+//    $ [sudo] gem install fastlane -NV
+//  .. or alternatively using Homebrew
+//    $ brew cask install fastlane
+// 3. Navigate to your iOS or Android app and run
+//    $ fastlane init
+//      .. fastlane will automatically detect your project, and ask for any missing information.
+
+////////////////////
+// How it works
+////////////////
+// You can start by creating a Fastfile file in your repository, here’s one that defines
+// your beta or App Store release process:
+lane :beta do
+  increment_build_number
+  build_app
+  upload_to_testflight
+end
+lane :appstore do
+  capture_screenshots
+  build_app
+  upload_to_app_store
+  slack
+end
+
+////////////////////////
+// Usage in practice
+/////////////////////
+// You just defined 2 different lanes, one for beta deployment, one for App Store.
+// To release your app in the App Store, all you have to do is
+// $ fastlane release
+
+/////////////////
+// Testing
+/////////////
+// + To run your unit tests or UI tests using fastlane, add the following to your Fastfile
+lane :tests do
+  run_tests(scheme: "MyAppTests")
+end
+// Additionally you can specify more options for building and testing your app, for example
+lane :tests do
+  run_tests(workspace: "Example.xcworkspace",
+            devices: ["iPhone 6s", "iPad Air"],
+            scheme: "MyAppTests")
+end
+///////////////////
+// Other Services
+// To post a message when fastlane encounters a test or build failure,
+// add the following to your Fastfile:
+error do |ex|
+  hipchat(message: "Tests have failed!",
+          channel: "Room or @username",
+          success: false)
+end
+
+////////////////////////////
+// Screen Shots in iTunes
+//////////////////////////
+// FASTLANE: to put all of this together so that anyone on your team could trigger generating
+// and uploading new screenshots, you can define a fastlane lane called screenshots.
+// It would be responsible for:
+// 1. Running your app through snapshot to automatically capture your screenshots
+// 2. Having deliver send your final screenshots to iTunes Connect for use in the App Store
+/////////////////////////////////////
+// Add the following code to your fastlane/Fastfile:
+lane :screenshots do
+  capture_screenshots
+  upload_to_app_store
+end
+///////////////////////////
+// Device frames
+/////////////////////
+// Automatically add device frames around all screenshots in the current directory and its subdirectories,
+// just run
+//   $ fastlane frameit
+// This will only add a device frame around the screenshots, not the background and title.
+// Those images can be used for your website, email newsletter and similar.
+///////////////////////////
+// Framing and Deployment
+//////////////////////////
+// To add the framing to your deployment process, use the following code in your Fastfile:
+lane :screenshots do
+  capture_screenshots
+  frame_screenshots(white: true)
+  upload_to_app_store
+end
+
+/////////////////////////////////////////////////////////////////////////////////
+// Beta deployment
+////////////////////
+// fastlane takes care of building your app using an action called build_app,
+// just add the following to your Fastfile:
+lane :beta do
+  build_app(scheme: "MyApp")
+end
+//////////////////////
+// Additionally you can specify more options for building your app, for example:
+lane :beta do
+  build_app(scheme: "MyApp",
+            workspace: "Example.xcworkspace",
+            include_bitcode: true)
+end
+/////////////////////
+// Try running the lane using
+//  $ fastlane beta
+/////////////////////
+// + After building your app, it's ready to be uploaded to a beta testing service of your choice.
+// + The beauty of fastlane is that you can easily switch beta provider, or even upload to multiple at once,
+//   without any extra work.
+// + All you have to do is to put the name of the beta testing provider of your choice after building the app
+//   using build_app:
+lane :beta do
+  sync_code_signing(type: "appstore")    # see code signing guide for more information
+  build_app(scheme: "MyApp")
+  upload_to_testflight
+  slack(message: "Successfully distributed a new beta build")
+end
+///////////////////////////
+// + fastlane automatically passes on information about the generated .ipa file from build_app
+//   to the beta testing provider of your choice.
+// + To get a list of all available parameters for a given action, run
+//     $ frfastlane action slack
+
+////////////////////////////////
+// Adding testers to Testflight
+////////////////////////////////
+// pilot is automatically installed with fastlane, you can use it to register individual
+// testers to TestFlight
+//////////////////////////
+# Register a new external tester
+fastlane pilot add email@invite.com
+////////////////////////////////////
+# Register a new external tester and add them to your app
+fastlane pilot add email@invite.com -a com.app.name
+
+////////////////////////////////////////////////////
+// Read the latest version number from Testflight
+/////////////////////////////////////////////////
+// The code sample below will use the latest build number from TestFlight and temporarily set it.
+lane :beta do
+  increment_build_number(
+    build_number: latest_testflight_build_number + 1,
+    xcodeproj: "Example.xcodeproj"
+  )
+end
+////////////////////////////////////////
+// Increment and Commit build number
+// The code sample below will increment the build number and commit the project changes to version control.
+lane :beta do
+  # Ensure that your git status is not dirty
+  ensure_git_status_clean
+
+  # Increment the build number (not the version number)
+  # Providing the xcodeproj is optional
+  increment_build_number(xcodeproj: "Example.xcodeproj")
+
+  # Commit the version bump
+  commit_version_bump(xcodeproj: "Example.xcodeproj")
+
+  # Add a git tag for this build. This will automatically
+  # use an appropriate git tag name
+  add_git_tag
+
+  # Push the new commit and tag back to your git remote
+  push_to_git_remote
+end
+
+////////////////////////////////////////////////////////////////
+// App Store deployment
+///////////////////////////
+// + fastlane takes care of building your app using an action called build_app,
+//   just add the following to your Fastfile:
+lane :release do
+  build_app(scheme: "MyApp")
+end
+///////////////////////////////
+// Upload the Binary
+////////////////////////
+// After building your app, it's ready to be uploaded to the App Store.
+// If you've already followed iOS Beta deployment using fastlane,
+// the following code might look similar already.
+lane :release do
+  capture_screenshots                  # generate new screenshots for the App Store
+  sync_code_signing(type: "appstore")  # see code signing guide for more information
+  build_app(scheme: "MyApp")
+  upload_to_app_store                  # upload your app to iTunes Connect
+  slack(message: "Successfully uploaded a new App Store build")
+end
+
+/////////////////////////////////
+// Push Notifications
+/////////////////////////
+// + To make sure your latest push notification certificate is still valid during your submission process,
+//   add the following at the beginning of your lane:
+lane :release do
+  get_push_certificate
+  # ...
+end
+////////////////////////////////
+// + get_push_certificate will ensure your certificate is valid for at least another 2 weeks,
+//   and create a new one if it isn't.
+// + If you don't have any push certificates already, get_push_certificate will create one for you
+//   and store locally in your project's directory.
+// + To get more information about the available options run  fastlane action get_push_certificate.
+////////////////////////////////////
+// Incrementing the build number
+/////////////////////////////////
+// The code sample below will use the latest build number from iTunes Connect and temporarily set it.
+lane :beta do
+  increment_build_number(
+    build_number: app_store_build_number + 1,
+    xcodeproj: "Example.xcodeproj"
+  )
+end
