@@ -15,3 +15,16 @@ git push -u origin master
 ////////////////////////////////////
 // Anzeigen der lokalen Änderungen
 git status
+
+////////////////////////////////////
+// Merge branches - Pull requests
+/////////////////////////////////
+// 1. Create a pull request
+// 2. Select the target/base branch (master) on the left
+// 3. Select the source/Compare branch (development) on the right
+// 4. Type in a pull request name and description
+// 5. Do a review, add comments.
+//    You can add commits to a pull request
+//    Describe the changes
+// 6. Merge Pull Request
+//    "Do the merge"
