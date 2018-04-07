@@ -10,16 +10,11 @@
 // and setting PIN 2 to '1' will turn the LED OFF
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
   pinMode(2, OUTPUT);
-
-  Serial.println( "Started" );
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  Serial.println( "Bloenk" );
   digitalWrite(2, LOW);
   delay(1000);
   digitalWrite(2, HIGH); 
