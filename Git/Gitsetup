@@ -7,6 +7,14 @@ git commit -m "first commit"
 git clone https://git......
 git push -u origin master
 
+/////////////////////////////
+// Set local repo to remote
+////////////////////////////
+// 1. create folder with repo name - Create the local repo root.
+// 2. git init inside the folder - Create .git file
+// 3. git remote add origin git@/reponame.git - Bind to remote repo
+// 4. git pull origin master - Download
+
 ///////////////////////////////////
 // Collecting files for commit
 // The add-command only adds files to the next commit.
