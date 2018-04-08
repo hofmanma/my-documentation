@@ -1,22 +1,22 @@
 #include "ESP8266WiFi.h"
-#include "TestServer.h"
+#include "LEDServer.h"
 #include "StreamClient.h"
 
-TestServer* server;
+StreamServer* server;
 
 void setup() {
 
   Serial.begin(9600);
 
-  server = new TestServer(80);
-  if ( server->login( "WLAN-xy","Password")) {
+  server = new LEDServer(80);
+  if ( server->login( "WLAN-485358","0231513167574167")) {
 
     Serial.println(".. Server listening on port 80.");
-
+    
   } else {
 
     Serial.println(".. Server could not be started.");
-
+    
     delete server;
     server = NULL;
   }
@@ -34,9 +34,9 @@ void loop() {
 
               delay( 10 );
           }
-
+          
           delete client;
-          Serial.println(".. Client Closed.");
+          Serial.println(".. Client Closed."); 
       }
   }
 }
