@@ -20,6 +20,15 @@ A. Hardware | Azure Cloud
 // https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/#downloads
 ///////////////////////////
 
+///////////////////////////////////////////
+// Import Image into VirtualBox
+///////////////////////////////////////////
+// Der Download liefert ein .ova File.
+// Dies kann per File/Import in VirtualBox integriert werden.
+// Das Ergebnis ist eine neue VM.
+///////////////////////////////////////////
+// https://kb.vmware.com/s/article/2053864
+
 ////////////////////////////////////////
 // Windows 10 einrichten in VirtualBox
 ///////////////////////////////////////
