@@ -1,0 +1,31 @@
+/////////////////////////////
+// Architecture
+///////////////
+---------------------------
+D. Mac OS X
+---------------------------
+C. VirtualBox
+---------------------------
+B. Windows
+---------------------------
+A. Hardware | Azure Cloud
+---------------------------
+
+/////////////////////////
+// Download Windows VMs
+////////////////////////
+// Test VMs created for IE testing
+///////////////////////////////////
+// https://www.wintotal.de/virtuelles-windows-von-microsoft-zum-testen-nutzen/
+// https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/#downloads
+///////////////////////////
+
+////////////////////////////////////////
+// Windows 10 einrichten in VirtualBox
+///////////////////////////////////////
+// https://www.pcwelt.de/ratgeber/Windows-10-mit-Virtualbox-in-Mac-OS-X-einrichten-9839076.html
+
+////////////////////////////////////////
+// Mac OS X in Azure einrichten
+/////////////////////////////////
+// http://wp.sjkp.dk/running-macos-using-virtual-box-in-azure/
