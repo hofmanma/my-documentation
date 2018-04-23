@@ -1,0 +1,125 @@
+///////////////////////
+// Mandanten
+////////////////
+// + Als mandantenfähig (auch mandantentauglich) wird Informationstechnik bezeichnet,
+//     .. die auf demselben Server oder demselben Software-System mehrere Mandanten,
+//        also Kunden oder Auftraggeber, bedienen kann,
+//     .. ohne dass diese gegenseitigen Einblick in ihre Daten, Benutzerverwaltung und Ähnliches haben.
+// + Der Mandant ist die oberste Ordnungsinstanz in dem IT-System und stellt eine datentechnisch und
+//   organisatorisch abgeschlossene Einheit im System dar.
+//   Der Mandant strukturiert somit die Nutzung des Systems.
+// + In einem mandantenfähigen System muss zwischen mandantenabhängigen und mandantenübergreifenden Daten
+//   und Objekten unterschieden werden.
+// + Mandantenabhängige Daten und Objekte sind Daten, Datenpräsentationen und Konfigurationen,
+//   die für jeden Mandanten individuell geregelt werden können.
+//     --> Beispiele sind Kunden, deren Kontoinformationen oder das Benutzerverzeichnis.
+// + Vorteile von Mandantensystemen sind insbesondere
+//     .. die zentrale Installation und Wartung,
+//     .. der geringere Speicherbedarf für Daten
+//     (da mandantenübergreifende Daten und Objekte nur einmal pro installiertem System und
+//      nicht einmal pro Mandant gehalten werden müssen),
+//     .. sowie gegebenenfalls geringere Lizenzkosten (abhängig vom Lizenzmodell).
+// + Vorlagedatenbank
+// + mandantenübergreifende Auswertungen möglich / BW
+
+///////////////////////
+// Vorteile
+/////////////////
+// + Hohe Sicherheit: Es gibt drei Schlüsselkomponenten, die den Grad der Isolation zwischen
+//   multiplen Mandanten in einem Rechenzentrum definieren:
+//   Zugangsregeln, Anwendungsentwicklung sowie Datenzugriff und -schutz.
+// + Wirtschaftlichkeit: Die Kosten für Softwareentwicklung und -wartung werden zwischen den Mandanten geteilt.
+// + Service-Sicherheit und schnellere Updates: Mit Mandantenfähigkeit muss der Provider Updates
+//   nur einmal vornehmen. Im Gegensatz dazu steht das klassische IT-Outsourcing, bei dem die komplette
+//   Infrastruktur exklusiv vom Kunden gemietet wird – jeder Kunde hat somit seine eigene Softwareinstanz
+//   und erhält möglicherweise Zugang zum Anwendungscode.
+//   Diese Instanzen beschreiben allerdings keine Mandantenfähigkeit.
+
+/////////////////
+// Security
+/////////////
+// "Auf Mandantenebene gesehen muss dafür Sorge getragen werden, dass der eine Mandant nicht
+//  unerlaubt die Daten des anderen nutzen kann."
+//   --> Welche Sicherheitsrichtlinien schreibt BMW vor?
+// + Wie sichert man Mandanten gegen unbefugte Zugriffe ab
+//     --> über den Login.
+// + Verarbeitungsfunktionen, Zugriffsberechtigungen und Konfigurationseinstellungen
+//   müssen pro Mandant eigenständig festgelegt werden.
+// + Übermittlung zwischen Mandanten.
+// + Abgeschlossenheit eines Mandanten sicherstellen
+// + Unabhängige Konfiguration eines Mandanten
+// + Getrennte Benutzerverwaltung
+// + Welche Möglichkeiten bietet die Benutzerverwaltung unserer Systeme
+// + Welche Verschlüsselungskonzepte existieren
+// + Sicherheitspatches und Bugfixes werden gemeinsam und nicht nacheinander eingespielt.
+
+//////////////////////////////////////////////////
+// Fragen
+//////////////////////
+// + Welche DB Systeme haben wir aktuell im Einsatz
+// + Welche DB Systeme werden wir einsetzen
+// + Was muss bei der Implementierung von Mandanten beachtet werden.
+
+/////////////////////////////////////
+// Lizenzierung und Kostenabrechnung
+/////////////////
+// + Ist eine Mandantenbasierte Abrechnung für unsere System möglich.
+// + Welche Lizenzmodelle existieren
+// + Welche Systeme werden wir in Zukunft einsetzen.
+//   Ist die Machbarkeit dann noch gegeben
+
+///////////////////////////
+// Releasefestigkeit
+///////////////////////
+// + Migration aller Werke notwendig. Keine Migration eines einzelnen Werkes.
+// + Wiederherstellen eines Mandanten.
+// + Klonen eines Mandanten. Verwenden eines Template Mandanten.
+
+///////////////////////////
+// Systemausfall
+///////////////////
+// + Openshift und Kubernetes sind essentiell
+// + Beim Ausfall des Systems sind alle Standorte betroffen.
+//     --> Openshift und Kubernetes ist zwingend
+// + Umleiten auf ein neues Backend
+
+///////////////////////////
+// Migration
+/////////////////
+// + keine Migration einzelner Werke möglich.
+// + Ausfallzeit -> Was will BMW?
+
+//////////////////////////////
+// Transparenz für den Kunden
+//////////////////////
+// + Bei einem Ausfall sind immer alle Werke betroffen.
+// + Was akzeptiert BMW und was will BMW hier.
+// + Welche internen Vorgaben existieren bei BMW.
+
+//////////////////////////////
+// Performance
+////////////////
+// + Datenbankleistung - maximale Zahl an Usern und Werken
+// + Skalierbarkeit - Openshift essentiell
+
+////////////////////////////
+// Auswertungen - BW
+/////////////////////
+// + Mandantenübergreifende Auswertungen
+// + Mandantenübergreifende Zugriffsberechtigungen notwendig
+// + Erstellen eigener BW Tools.
+
+////////////////////////////
+// Mandantenverwaltung
+////////////////////////
+// + Temporärer Klon des Backends für ein Werk möglich.
+//   Klären der technischen Machbarkeit mit Isabela. (Spiegeln der Daten)
+// + Verwenden und Erstellen eines Mandantentemplates
+// + Gibt es Templates für unsere Datenbanksysteme
+// + Verwenden mehrere Backends (Verteilen der Daten)
+/////////////////////////
+// Pflege der Mandanten
+////////////////////////
+// + eigenes Tool schreiben oder ein bestehendes Tool verwenden?
+// + Existiert ein bestehendes Tool für unsere Datenbanksysteme
+// + Zugriffskontrolle implementieren.
