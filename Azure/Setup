@@ -1,0 +1,47 @@
+/////////////////////////////
+// Architecture
+///////////////
+---------------------------
+D. Mac OS X
+---------------------------
+C. VirtualBox (Hypervisor)
+---------------------------
+B. Windows
+---------------------------
+A. Hardware | Azure Cloud
+---------------------------
+
+/////////////////////////
+// Download Windows VMs
+////////////////////////
+// Test VMs created for IE testing
+///////////////////////////////////
+// https://www.wintotal.de/virtuelles-windows-von-microsoft-zum-testen-nutzen/
+// https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/#downloads
+///////////////////////////
+
+///////////////////////////////////////////
+// Import Image into VirtualBox
+///////////////////////////////////////////
+// Der Download liefert ein .ova File.
+// Dies kann per File/Import in VirtualBox integriert werden.
+// Das Ergebnis ist eine neue VM.
+///////////////////////////////////////////
+// https://kb.vmware.com/s/article/2053864
+
+////////////////////////////////////////
+// Windows 10 einrichten in VirtualBox
+///////////////////////////////////////
+// https://www.pcwelt.de/ratgeber/Windows-10-mit-Virtualbox-in-Mac-OS-X-einrichten-9839076.html
+
+////////////////////////////////////////
+// Mac OS X in Azure einrichten
+/////////////////////////////////
+// http://wp.sjkp.dk/running-macos-using-virtual-box-in-azure/
+// https://techsviewer.com/install-macos-sierra-virtualbox-windows
+
+///////////////////////////////////////////////////
+// Mac OS High Sierra in Virtual Box installieren
+///////////////////////////////////
+// https://www.aptgetupdate.de/2018/03/02/macos-10-13-high-sierra-in-virtualbox-unter-windows-oder-macos-installieren/
+// http://tobiwashere.de/2017/10/virtualbox-how-to-create-a-macos-high-sierra-vm-to-run-on-a-mac-host-system/

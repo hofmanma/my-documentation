@@ -1,0 +1,32 @@
+/////////////////////////////
+// Understanding and Analyzing Application Crash Reports
+///////////////////////////
+// + https://developer.apple.com/library/content/technotes/tn2151/_index.html
+
+/////////////////////////////
+// Low memory Reports
+////////////////////////
+// + A Low Memory report differs from other crash reports in that there are no backtraces in this type of report.
+// + When a low memory crash happens, you must investigate your memory usage patterns and your responses
+//   to low memory warnings.
+
+///////////////////////////////
+// Find the crash reason
+///////////////////////////
+// + Open the organizer window
+// + Select the app
+// + Select the build
+// + Control-click on the log
+// + Select "Show in Finder"
+// + Open file with Atom
+// + Check "termination reason" 
+
+/////////////////////////////////////////
+// Exception with termination reason
+///////////////////////////////////////
+// Namespace SIGNAL, Code 0x5
+///////////////////////////////////////
+// Swift code will terminate with this exception type if an unexpected
+// condition is encountered at runtime such as:
+// + a non-optional type with a nil
+// + value a failed forced type conversion

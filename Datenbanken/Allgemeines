@@ -1,0 +1,26 @@
+////////////////////////
+// Datenbankschema
+///////////////////
+// Ein Schema ist in der Informatik eine formale Beschreibung der Struktur von Daten.
+///////////////////
+// Definition
+//////////////
+// + Üblicherweise ist das Schema selbst in einer formalen Sprache definiert, so dass sich Daten automatisch
+//   darauf überprüfen lassen, ob sie dem Schema entsprechen.
+// + Ein bekanntes Beispiel für eine solche Beschreibungssprache ist XML-Schema für XML.
+
+////////////////////////
+// Datenbankschema
+/////////////////////
+// + Eine wichtige Rolle spielen Schemata im Zusammenhang mit Datenbanken.
+// + Hier spricht man oft auch vom Datenbankschema.
+// + Das Schema legt dabei fest, welche Daten in einer Datenbank in welcher Form gespeichert werden können
+//   und welche Beziehungen zwischen den Daten bestehen.
+
+///////////////////////
+// Nachlesen
+///////////////
+// + Unterschiede zwischen Datenbanksystemen
+//    .. Behandlung von Indexen
+//    .. Behandlung von Primärschlüsseln
+//    .. Behandlung von Fremdschlüsseln.

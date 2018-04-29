@@ -1,0 +1,40 @@
+//////////////////////
+// Main goals
+/////////////////
+// + no manual jobs
+// + less interference
+// + maximum automation.
+
+///////////////////////////
+// How to set up CI/CD
+////////////////////////
+// Git ---> Jenkins ---> Docker Image ---> The World
+//                                    |--> The World
+//                                    ...
+/////////////////////////
+//        Staging Repo  <---push--- Developer
+//        Release Branch
+//             |
+//             |
+//             v
+//        Snapshot Repo
+//             |
+//             |
+//             v
+//        Other Repos ---deploy---> Environments...
+//////////////////////////////////////////
+// What to version - Do not version code
+////////////////////////
+// 1. Create the docker image inside Jenkins
+// 2. Pass this docker image inside the pipeline.
+
+//////////////////////////////////////////
+// Best Practice
+////////////////////////////////
+// + Feature branches are overhead.
+// + Merging feature branches to master branch is difficulty
+// + Feature branches slow down deployment
+// + Start agile as easy as possible.
+// + Avoid pull requests.
+// + Avoid late integration
+// + Make everything as transparent to the customer as possible.
