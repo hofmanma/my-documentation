@@ -1,0 +1,100 @@
+//////////////////////////////////
+// Using Web Sockets in Payara
+/////////////////////////////////
+// Tutorial
+/////////////
+// https://blog.payara.fish/jsf-2.3-the-websocket-quickstart-under-payara-server
+
+///////////////////////////////////////////
+// Payara Server; Java Bean implementation
+/////////////////////////////
+// Verwenden von Annotations
+@Named
+@ApplicationScoped
+public class PushBean implements Serializable {
+
+ private static final Logger LOG = Logger.getLogger(PushBean.class.getName());
+
+ @Inject
+ @Push(channel = "clock")
+ private PushContext push;
+
+ public void clockAction(){
+  Calendar now = Calendar.getInstance();
+
+  String time = now.get(Calendar.HOUR_OF_DAY) + ":" +
+                now.get(Calendar.MINUTE) + ":" + now.get(Calendar.SECOND);
+  LOG.log(Level.INFO, "Time: {0}", time);
+
+  push.send(time);
+ }
+}
+
+////////////////////////////
+// Client/ Java Script
+///////////////////////////////////
+// + message ist der gesendete text
+// + channel der Websocket Channel/ Name der Verbindung
+///////////////////////////////
+<h:body>
+ <h:form>
+  <h:commandButton value="Clock" action="#{pushBean.clockAction()}">
+   <f:ajax />
+  </h:commandButton>
+ </h:form>
+
+ <f:websocket channel="clock" onmessage="socketListener" />
+
+ <hr/>
+ <div id="clockId"></div>
+
+ <script type="text/javascript">
+  function socketListener(message, channel, event) {
+
+      document.getElementById("clockId").innerHTML += message + "<br/>";
+  }
+ </script>
+</h:body>
+
+////////////////////////////////
+// Websockets und iOS - Client
+//////////////////////////////
+// Tutorial
+////////////
+// https://www.raywenderlich.com/143874/websockets-ios-starscream
+/////////////////////////
+// Starscream framework
+// Install via pods.
+///////////////////////
+// 1. import Starscream
+// 2. Create Socket
+var socket = WebSocket(url: URL(string: "ws://localhost:1337/")!, protocols: ["chat"])
+
+// 3. Implement delegate
+extension ViewController : WebSocketDelegate {
+  public func websocketDidConnect(_ socket: Starscream.WebSocket) {
+
+  }
+
+  public func websocketDidDisconnect(_ socket: Starscream.WebSocket, error: NSError?) {
+
+  }
+
+  public func websocketDidReceiveMessage(_ socket: Starscream.WebSocket, text: String) {
+
+  }
+
+  public func websocketDidReceiveData(_ socket: Starscream.WebSocket, data: Data) {
+
+  }
+}
+// 4. Set WebSocketDelegate
+socket.delegate = self
+socket.connect()
+
+// 5. send data to the Server
+socket.write(string: "")
+
+// 6. disconnect
+socket.disconnect(forceTimeout: 0)
+socket.delegate = nil

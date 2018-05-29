@@ -1,0 +1,20 @@
+//////////////////////////////////////////
+// Squirrel SQL Client
+////////////////////////
+
+//////////////////
+// Fehlermeldung
+// Um das java-Befehlszeilenprogramm nutzen zu können, musst du ein Java-Entwicklerpaket installieren.
+//////////////
+// Java SE..
+// http://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html
+
+///////////////////////////////////////
+// Ermitteln des Java Home Directories
+//////////////////////////////
+// /usr/libexec/java_home -v
+
+//////////////////////////////
+// Set Java home
+/////////////////
+// export JAVA_HOME=////
