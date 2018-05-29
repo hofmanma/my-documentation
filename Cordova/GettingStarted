@@ -1,0 +1,46 @@
+///////////////////////////////////////////////
+// Don't use sudo when creating the projects
+// It will break the ios simulator.
+
+////////////////////////
+// Step 1 - Creating App
+// Open the directory where you want the app to be installed in command prompt. We will create it on desktop.
+//////////////////////
+// Sample - Template
+//////////////////////////////////////
+// cordova create CordovaProject io.cordova.hellocordova CordovaApp
+/////////////////
+// CordovaProject is the directory name where the app is created.
+//
+// io.cordova.hellocordova is the default reverse domain value. You should use your own domain value if possible.
+//
+// CordovaApp is the title of your app.
+////////////////
+// cordova create TestsProject com.hofmanma.test1 CordovaTestApp
+
+///////////////////////////////
+// Step 2 - Add platform
+// + You need to open your project directory in the command prompt.
+// + In our example, it is the CordovaProject.
+// + You should only choose platforms that you need.
+/////////////////////////////
+// cordova platform add ios
+// cordova platform add android
+
+///////////////////////////////
+// Step 3 - Build and run
+////////////////////////
+// + mobile device or emulator.
+// cordova build ios
+// + Now we can run our app. If you are using the default emulator you should use −
+// cordova emulate ios
+// + If you want to use the external emulator or real device you should use −
+// cordova run ios
+
+////////////////////////////
+// Step 4 - configuration
+//////////////////////////
+// + The config.xml file is the place where we can change the configuration of the app.
+// + When we created our app in the last tutorial, we set reverse domain and name.
+// + The values can be changed in the config.xml file.
+// + When we create the app, the default config file will also be created.
