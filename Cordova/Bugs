@@ -1,0 +1,16 @@
+///////////////////////////
+// Click Event not working
+///////////////////////////
+Apache Cordova: iOS click event not working – Quick „how to“
+When you are using Apache Cordova to create apps, you will most likely use click  events to navigate from one view to another or to do other stuff.
+
+This all works fine on Android devices, but iOS is not doing anything – and you won’t get an error in the debug console, either.
+
+The problem is that iOS is not sending a click  event, but touchstart .
+/////////////////////////
+// Sample
+So your event listener should look somewhat like the following:
+
+$('button').on('click touchstart', function(){
+    // Click event - even working with iOS
+});

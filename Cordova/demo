@@ -1,0 +1,8 @@
+///////////////////////////
+// Setup project
+//////////////////
+1. cordova create BMWDemoProject com.bmw.demo.scanner bmw-demo-scanner
+2. cd BMWDemoProject
+3. cordova platform add ios
+4. cordova plugin add cordova-plugin-barcodescanner
+5. cordova emulate ios

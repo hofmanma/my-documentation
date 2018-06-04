@@ -36,6 +36,9 @@
 // cordova emulate ios
 // + If you want to use the external emulator or real device you should use −
 // cordova run ios
+// cordova run ios --device --target="Iphone"
+////////////////////////////////
+// sudo npm install -g ios-deploy --unsafe-perm=true
 
 ////////////////////////////
 // Step 4 - configuration
@@ -44,3 +47,27 @@
 // + When we created our app in the last tutorial, we set reverse domain and name.
 // + The values can be changed in the config.xml file.
 // + When we create the app, the default config file will also be created.
+
+//////////////////////////
+// Step 5 - add plugins
+/////////////////////////
+// Barcode Scanner ..
+// cordova plugin add cordova-plugin-barcodescanner
+
+//////////////////////////////
+// Step 6 - Add Swift Support
+////////////////////////////
+// cordova plugin add cordova-plugin-add-swift-support --save
+////////////////////////////
+// + The cordova-ios library is written in Objective-C, but you can create Swift plugins.
+// + Tne thing to note is you must make your main plugin class accessible to Objective-C.
+// + See the example here.
+////////////////////////////
+@objc(HWPHello) class Hello : CDVPlugin {
+    func greet(command: CDVInvokedUrlCommand) {
+        var message = command.arguments[0] as String
+
+        var pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAsString: "Hello \(message)")
+        commandDelegate.sendPluginResult(pluginResult, callbackId:command.callbackId)
+    }
+}
