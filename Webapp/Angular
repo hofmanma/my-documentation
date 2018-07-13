@@ -1,0 +1,54 @@
+///////////////////////
+// Angular - Überblick
+///////////////////////
+// + ist ein TypeScript-basiertes Front-End-Webapplikationsframework.
+// + Es wird von einer Community aus Einzelpersonen und Unternehmen, angeführt durch Google, entwickelt
+// + wird als Open-Source-Software publiziert.
+
+///////////////////////
+// Getting started
+///////////////////
+// Step 1. Set up the Development Environment
+// .. Install Node.js® and npm if they are not already on your machine.
+// .. Then install the Angular CLI globally
+// $ npm install -g @angular/cli
+////////////////////////////////
+// Step 2. Create a new project
+// .. ng new my-app
+// + The Angular CLI installs the necessary npm packages,
+// + creates the project files,
+// + and populates the project with a simple default app.
+//   This can take some time.
+/////////////////////////////////
+// Step 3: Serve the application
+// $ cd my-app
+// $ ng serve --open
+//////////////////////////
+// + The ng serve command launches the server, watches your files, and rebuilds the app as you make changes to those files.
+// + Using the --open (or just -o) option will automatically open your browser on http://localhost:4200/.
+/////////////////////////////////////////////
+// Step 4: Edit your first Angular component
+// + The CLI created the first Angular component for you.
+// + This is the root component and it is named app-root.
+// + You can find it in ./src/app/app.component.ts.
+////////////////////////////
+// src/app/app.component.ts
+////////////////////////////
+export class AppComponent {
+  title = 'My First Angular App!';
+}
+////////////////////////////
+// src/app/app.component.css
+///////////////////////////
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+
+/////////////////////
+// The src folder
+///////////////////
+// + Your app lives in the src folder.
+//   All Angular components, templates, styles, images, and anything else your app needs go here.
+// + Any files outside of this folder are meant to support building your app.

@@ -1,0 +1,28 @@
+///////////////////////
+// Navigation
+// Opening a dialog after navigation to a page is completed
+///////////////
+// https://archive.sap.com/discussions/thread/3908623
+
+////////////////////
+// Close alert box programmatically
+// Won't work..
+// https://stackoverflow.com/questions/463368/javascript-close-alert-box/463576
+
+//////////////////////////////////////
+// Extending models for local storage
+////
+// https://github.com/SAP/openui5/blob/master/src/sap.ui.core/src/sap/ui/model/ClientModel.js
+
+///////////////////////////////////
+// Uploading Files using form data
+////
+// https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#Submitting_forms_and_uploading_files
+// https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_forms_through_JavaScript
+// https://www.quora.com/How-do-I-upload-an-image-using-AJAX
+// https://stackoverflow.com/questions/11442367/how-to-set-boundary-while-using-xmlhttprequest-and-formdata
+
+////////////////////////////////////////////////////
+// How to implement constructor functions with AMD
+/////
+// <https://ui5.sap.com/resources/sap/ui/model/json/JSONModel-dbg.js>
