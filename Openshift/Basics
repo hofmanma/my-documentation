@@ -106,3 +106,25 @@
   .. are running at one time.
 + "A Homogenous set of pods is always up and available"
 + Allows to specify the number of replicas or the restart policy.
+
+//////////////////////////
+// The Orchestration
+//////////////////////
+     The world
+  --------------------------------
+     Service A
+      .. Pod A
+      .. URL + external Port
+  ================================
+     Pod A - IP 111, Port 8081
+      Container 1
+      Container 2
+  ================================
+     Deployment A (Pod Configuration)
+      .. Environment variables
+      .. Pod A
+      .. Trigger (git changes)
+      .. Scaler
+      .. Replication
+  --------------------------------
+     Build A + Image A
