@@ -110,27 +110,27 @@
 //////////////////////////
 // The Orchestration
 //////////////////////
----------------------------------------
+------------------------------------------
      The world
----------------------------------------
+------------------------------------------
      Route A
       http or https
       Certificates for https
       external port mapping to Service A
----------------------------------------
+------------------------------------------
      Service A
       .. Pod A
-      .. URL + external Port
-================================
+      .. URL + internal Port
+======================================
      Pod A - IP 111, Port 8081
       Container 1
       Container 2
-================================
+======================================
      Deployment A (Pod Configuration)
       .. Environment variables
       .. Pod A
       .. Trigger (git changes)
       .. Scaler
       .. Replication
---------------------------------
+--------------------------------------
      Build A + Image A
