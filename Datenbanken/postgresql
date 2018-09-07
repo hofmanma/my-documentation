@@ -1,0 +1,6 @@
+////////////////////
+// psql - commands
+///////////////////
+// \list - list all databases
+// \dt - list all tables in a database
+// \c databasename - switch database
